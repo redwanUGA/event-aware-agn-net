@@ -1,0 +1,3 @@
+14:33:22 device cuda NVIDIA L4
+14:33:22 arch gconv params 181527
+14:33:39 full: {"val": 0.1399, "test2024": 0.1283, "test2025": 0.0299}

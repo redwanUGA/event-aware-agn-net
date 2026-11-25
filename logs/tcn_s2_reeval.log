@@ -1,0 +1,3 @@
+14:34:51 device cuda NVIDIA L4
+14:34:52 arch tcn params 596592
+14:34:58 full: {"val": 0.1716, "test2024": 0.1075, "test2025": 0.0351}

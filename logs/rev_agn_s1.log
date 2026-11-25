@@ -1,0 +1,47 @@
+16:21:42 multistep {"k1_H1|onestep": 0.809506893157959, "k1_H1|onestep_top": 0.8872658610343933, "k1_H1|util": 0.6448171138763428, "k1_H1|util_top": 0.7601373195648193, "k1_H1|util_kl": 0.6130712628364563, "k1_H1|util_kl_top": 0.7030119299888611, "k1_H1|change": 0.22380341589450836, "k1_H1|change_top": 0.47419115900993347, "k1_H1|change_meas": 0.35288143157958984, "k1_H1|change_meas_top": 0.4889846742153168, "k1_H5|onestep": 0.7997798919677734, "k1_H5|onestep_top": 0.8800819516181946, "k1_H5|util": 0.6678643822669983, "k1_H5|util_top": 0.7709397673606873, "k1_H5|util_kl": 0.6374890804290771, "k1_H5|util_kl_top":
+16:22:08 [lip] b=0.125: {"gamma_median": 0.966700553894043, "gamma_p90": 0.9929555058479309, "gamma_p99": 1.0160996913909912, "gamma_max": 2.5275444984436035, "frac_gamma_lt1": 0.9761022329330444, "one_step_bound_holds": 1.0, "e_median": 3.019584894180298, "accumulated_bound_median": 11.097582817077637, "accumulated_bound_holds": 1.0, "readout_ratio_median": 0.1998382955789566, "readout_ratio_p99": 0.5507363677024841, "spearman_state_err_vs_kl": 0.19313105940818787}
+16:22:32 [lip] b=0.25: {"gamma_median": 0.9610442519187927, "gamma_p90": 0.9857822060585022, "gamma_p99": 1.0019469261169434, "gamma_max": 1.7667404413223267, "frac_gamma_lt1": 0.9854959845542908, "one_step_bound_holds": 1.0, "e_median": 2.665971279144287, "accumulated_bound_median": 7.649898529052734, "accumulated_bound_holds": 1.0, "readout_ratio_median": 0.11197048425674438, "readout_ratio_p99": 0.5040864944458008, "spearman_state_err_vs_kl": -0.03996816650032997, "jac_l2_median": 1.0587317943572998, "jac_l2_max": 5.321038246154785}
+16:22:59 [lip] b=0.5: {"gamma_median": 0.9593788385391235, "gamma_p90": 0.9849564433097839, "gamma_p99": 0.9955431818962097, "gamma_max": 1.451840877532959, "frac_gamma_lt1": 0.9959920048713684, "one_step_bound_holds": 1.0, "e_median": 1.9561012983322144, "accumulated_bound_median": 4.428433418273926, "accumulated_bound_holds": 1.0, "readout_ratio_median": 0.044499363750219345, "readout_ratio_p99": 0.4305931627750397, "spearman_state_err_vs_kl": 0.1092657595872879}
+16:23:24 [collars] full@1.0: {"ev_c0.2": 0.057, "ev_c0.5": 0.104, "ev_c1.0": 0.229, "onset_c0.5": 0.407, "onset_c1.0": 0.499, "overlap": 0.577, "seg1_F": 0.84, "seg1_advF": 0.189, "seg2_F": 0.868, "seg2_advF": 0.216, "pres_ev_c0.2": 1.0, "pres_ev_c0.5": 1.0, "pres_ev_c1.0": 1.0, "pres_onset_c0.5": 1.0, "pres_onset_c1.0": 1.0, "pres_overlap": 1.0, "pres_seg1_F": 1.0, "pres_seg1_advF": 1.0, "pres_seg2_F": 1.0, "pres_seg2_advF": 1.0}
+16:25:03 [collars] util@0.25: {"ev_c0.2": 0.052, "ev_c0.5": 0.098, "ev_c1.0": 0.225, "onset_c0.5": 0.407, "onset_c1.0": 0.497, "overlap": 0.573, "seg1_F": 0.836, "seg1_advF": 0.194, "seg2_F": 0.865, "seg2_advF": 0.218, "pres_ev_c0.2": 0.707, "pres_ev_c0.5": 0.778, "pres_ev_c1.0": 0.826, "pres_onset_c0.5": 0.87, "pres_onset_c1.0": 0.881, "pres_overlap": 0.875, "pres_seg1_F": 0.984, "pres_seg1_advF": 0.906, "pres_seg2_F": 0.987, "pres_seg2_advF": 0.911}
+16:26:53 [collars] change@0.25: {"ev_c0.2": 0.038, "ev_c0.5": 0.077, "ev_c1.0": 0.2, "onset_c0.5": 0.387, "onset_c1.0": 0.475, "overlap": 0.546, "seg1_F": 0.831, "seg1_advF": 0.177, "seg2_F": 0.86, "seg2_advF": 0.191, "pres_ev_c0.2": 0.565, "pres_ev_c0.5": 0.651, "pres_ev_c1.0": 0.722, "pres_onset_c0.5": 0.787, "pres_onset_c1.0": 0.808, "pres_overlap": 0.804, "pres_seg1_F": 0.969, "pres_seg1_advF": 0.78, "pres_seg2_F": 0.972, "pres_seg2_advF": 0.803}
+16:27:46 [collars] periodic@0.25: {"ev_c0.2": 0.038, "ev_c0.5": 0.079, "ev_c1.0": 0.217, "onset_c0.5": 0.409, "onset_c1.0": 0.493, "overlap": 0.56, "seg1_F": 0.836, "seg1_advF": 0.159, "seg2_F": 0.866, "seg2_advF": 0.191, "pres_ev_c0.2": 0.346, "pres_ev_c0.5": 0.45, "pres_ev_c1.0": 0.562, "pres_onset_c0.5": 0.665, "pres_onset_c1.0": 0.708, "pres_overlap": 0.712, "pres_seg1_F": 0.952, "pres_seg1_advF": 0.674, "pres_seg2_F": 0.962, "pres_seg2_advF": 0.694}
+16:29:08 [collars] random@0.25: {"ev_c0.2": 0.028, "ev_c0.5": 0.06, "ev_c1.0": 0.172, "onset_c0.5": 0.363, "onset_c1.0": 0.445, "overlap": 0.529, "seg1_F": 0.846, "seg1_advF": 0.176, "seg2_F": 0.872, "seg2_advF": 0.221, "pres_ev_c0.2": 0.344, "pres_ev_c0.5": 0.446, "pres_ev_c1.0": 0.537, "pres_onset_c0.5": 0.655, "pres_onset_c1.0": 0.695, "pres_overlap": 0.702, "pres_seg1_F": 0.954, "pres_seg1_advF": 0.639, "pres_seg2_F": 0.965, "pres_seg2_advF": 0.671}
+16:30:50 [collars] util@0.125: {"ev_c0.2": 0.045, "ev_c0.5": 0.086, "ev_c1.0": 0.226, "onset_c0.5": 0.409, "onset_c1.0": 0.502, "overlap": 0.575, "seg1_F": 0.829, "seg1_advF": 0.168, "seg2_F": 0.862, "seg2_advF": 0.198, "pres_ev_c0.2": 0.465, "pres_ev_c0.5": 0.566, "pres_ev_c1.0": 0.666, "pres_onset_c0.5": 0.741, "pres_onset_c1.0": 0.775, "pres_overlap": 0.769, "pres_seg1_F": 0.962, "pres_seg1_advF": 0.784, "pres_seg2_F": 0.97, "pres_seg2_advF": 0.805}
+16:32:50 [collars] util@0.5: {"ev_c0.2": 0.059, "ev_c0.5": 0.106, "ev_c1.0": 0.238, "onset_c0.5": 0.414, "onset_c1.0": 0.505, "overlap": 0.58, "seg1_F": 0.839, "seg1_advF": 0.188, "seg2_F": 0.867, "seg2_advF": 0.214, "pres_ev_c0.2": 0.9, "pres_ev_c0.5": 0.925, "pres_ev_c1.0": 0.941, "pres_onset_c0.5": 0.956, "pres_onset_c1.0": 0.958, "pres_overlap": 0.957, "pres_seg1_F": 0.995, "pres_seg1_advF": 0.971, "pres_seg2_F": 0.996, "pres_seg2_advF": 0.971}
+16:33:38 [long test2024] util@0.125 none: fidF 0.4786 agree 0.9263 forced 0.000
+16:34:12 [long test2024] util@0.125 25: fidF 0.4124 agree 0.9164 forced 0.027
+16:34:45 [long test2024] util@0.125 50: fidF 0.4543 agree 0.9225 forced 0.012
+16:35:20 [long test2024] util@0.125 100: fidF 0.4526 agree 0.9235 forced 0.005
+16:35:56 [long test2024] util@0.125 200: fidF 0.4677 agree 0.9256 forced 0.002
+16:36:31 [long test2024] util@0.125 adaptive: fidF 0.4526 agree 0.9235 forced 0.005
+16:37:06 [long test2024] util@0.25 none: fidF 0.7259 agree 0.9695 forced 0.000
+16:37:40 [long test2024] util@0.25 25: fidF 0.6906 agree 0.9642 forced 0.022
+16:38:15 [long test2024] util@0.25 50: fidF 0.7019 agree 0.9667 forced 0.010
+16:38:50 [long test2024] util@0.25 100: fidF 0.7128 agree 0.9679 forced 0.004
+16:39:26 [long test2024] util@0.25 200: fidF 0.7154 agree 0.9681 forced 0.002
+16:40:01 [long test2024] util@0.25 adaptive: fidF 0.7019 agree 0.9667 forced 0.010
+16:40:53 [long test2024] util@0.5 none: fidF 0.9179 agree 0.9901 forced 0.000
+16:41:45 [long test2024] util@0.5 25: fidF 0.8941 agree 0.9913 forced 0.008
+16:42:39 [long test2024] util@0.5 50: fidF 0.9194 agree 0.9917 forced 0.003
+16:43:32 [long test2024] util@0.5 100: fidF 0.9239 agree 0.9912 forced 0.001
+16:44:26 [long test2024] util@0.5 200: fidF 0.9195 agree 0.9906 forced 0.000
+16:45:19 [long test2024] util@0.5 adaptive: fidF 0.8941 agree 0.9913 forced 0.008
+16:45:49 [long test2025] util@0.125 none: fidF 0.5280 agree 0.9087 forced 0.000
+16:46:12 [long test2025] util@0.125 25: fidF 0.4492 agree 0.8911 forced 0.026
+16:46:34 [long test2025] util@0.125 50: fidF 0.4792 agree 0.9029 forced 0.012
+16:46:58 [long test2025] util@0.125 100: fidF 0.5041 agree 0.9040 forced 0.005
+16:47:22 [long test2025] util@0.125 200: fidF 0.5238 agree 0.9073 forced 0.002
+16:47:46 [long test2025] util@0.125 adaptive: fidF 0.5041 agree 0.9040 forced 0.005
+16:48:08 [long test2025] util@0.25 none: fidF 0.7643 agree 0.9620 forced 0.000
+16:48:31 [long test2025] util@0.25 25: fidF 0.7171 agree 0.9537 forced 0.022
+16:48:53 [long test2025] util@0.25 50: fidF 0.7385 agree 0.9586 forced 0.010
+16:49:17 [long test2025] util@0.25 100: fidF 0.7628 agree 0.9608 forced 0.004
+16:49:40 [long test2025] util@0.25 200: fidF 0.7633 agree 0.9618 forced 0.002
+16:50:03 [long test2025] util@0.25 adaptive: fidF 0.7385 agree 0.9586 forced 0.010
+16:50:37 [long test2025] util@0.5 none: fidF 0.9020 agree 0.9853 forced 0.000
+16:51:11 [long test2025] util@0.5 25: fidF 0.9240 agree 0.9897 forced 0.008
+16:51:45 [long test2025] util@0.5 50: fidF 0.9386 agree 0.9892 forced 0.003
+16:52:20 [long test2025] util@0.5 100: fidF 0.9175 agree 0.9871 forced 0.001
+16:52:55 [long test2025] util@0.5 200: fidF 0.9059 agree 0.9860 forced 0.000
+16:53:29 [long test2025] util@0.5 adaptive: fidF 0.9240 agree 0.9897 forced 0.008

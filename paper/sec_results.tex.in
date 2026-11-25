@@ -1,0 +1,74 @@
+\section{Results and Discussion}
+\label{sec:results}
+
+\policytable{tables/policy_C.tex}{Selection policies with the same number of node updates, all on the same weights. $F_{\mathrm{pres}}$: event preservation against the full-update model's own detections. $R^{\mathrm{adv}}_{\mathrm{pres}}$: share of the full model's adventitious detections that are preserved. $F$ and seg-adv-$F$: scores against the annotations. Bold: best policy per column and budget, excluding the hindsight oracle and the w/o-refresh ablation. $^\dagger$Hindsight oracle (runs the full update every step; not deployable). Mean$\pm$sd over three seeds.}{tab:policy}
+
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering
+\includegraphics[width=\linewidth]{figures/budget_C.pdf}
+\end{adjustwidth}
+\caption{Preservation versus update budget (mean over seeds): (a) event preservation $F_{\mathrm{pres}}$, 2024 test set; (b) adventitious preservation $R^{\mathrm{adv}}_{\mathrm{pres}}$, 2024; (c) $F_{\mathrm{pres}}$, 2025 release; (d) $R^{\mathrm{adv}}_{\mathrm{pres}}$, 2025. The dotted line is the cheap path with no graph updates. Our skip-harm controller (blue) is above every non-utility baseline at every budget and close to the hindsight oracle (dashed). The hold-only variant, omitted here, lies close to ours; the label-free variant lies between ours and the change objective at 12.5\% and 25\% (Table~\ref{tab:policy}).}
+\label{fig:budget}
+\end{figure}
+
+\subsection{Which Updates Can Be Skipped? (RQ1)}
+Table~\ref{tab:policy} and Figure~\ref{fig:budget} compare the selection policies. Skipping matters: with no graph updates at all, event preservation drops to $F_{\mathrm{pres}}={{agn_C_none@0.0_test2024_fidF}}$, so the persistent state carries much of the information.
+
+The skip-harm controller is the best deployable policy. With 25\% of the updates on the 2024 test set, it preserves the full model's events with $F_{\mathrm{pres}}={{agn_C_util@0.25_test2024_fidF}}$. AGN-Net's change objective reaches {{agn_C_change@0.25_test2024_fidF}}, energy {{agn_C_energy@0.25_test2024_fidF}}, periodic refresh {{agn_C_periodic@0.25_test2024_fidF}} and random selection {{agn_C_random@0.25_test2024_fidF}}. Our controller is close to the hindsight oracle ({{agn_C_oracle@0.25_test2024_fidF}}). The gain is positive in every seed, by {{ps_agn_test2024_0.25_util_random_fidF_min|2f}}--{{ps_agn_test2024_0.25_util_random_fidF_max|2f}} over random and {{ps_agn_test2024_0.25_util_change_fidF_min|2f}}--{{ps_agn_test2024_0.25_util_change_fidF_max|2f}} over the change objective. The patient-level bootstrap gives {{bt_C_test2024_0.25_util_random_fidF_delta}} [{{bt_C_test2024_0.25_util_random_fidF_lo}}, {{bt_C_test2024_0.25_util_random_fidF_hi}}] and {{bt_C_test2024_0.25_util_change_fidF_delta}} [{{bt_C_test2024_0.25_util_change_fidF_lo}}, {{bt_C_test2024_0.25_util_change_fidF_hi}}], respectively ($p{{bt_C_test2024_0.25_util_change_fidF_p|p}}$). The same ordering holds at 12.5\% ({{agn_C_util@0.125_test2024_fidF}} vs.\ {{agn_C_change@0.125_test2024_fidF}} and {{agn_C_random@0.125_test2024_fidF}}) and at 50\% ({{agn_C_util@0.5_test2024_fidF}} vs.\ {{agn_C_change@0.5_test2024_fidF}} and {{agn_C_random@0.5_test2024_fidF}}). It also holds on the 2025 release ({{agn_C_util@0.25_test2025_fidF}} vs.\ {{agn_C_change@0.25_test2025_fidF}} and {{agn_C_random@0.25_test2025_fidF}} at 25\%) and for adventitious detections ($R^{\mathrm{adv}}_{\mathrm{pres}}={{agn_C_util@0.25_test2024_fid_advR}}$ vs.\ {{agn_C_change@0.25_test2024_fid_advR}} and {{agn_C_random@0.25_test2024_fid_advR}}). Note that these are the model's own adventitious detections, few of which match an annotated adventitious event under the shifted annotation style.
+
+\paragraph*{Accuracy against the annotations}
+Better preservation also gives better detection. At 25\%, event $F$ against the annotations is {{agn_C_util@0.25_test2024_F}} for our controller and {{agn_C_full_test2024_F}} with full updates. Random and periodic selection change it by {{bt_C_test2024_0.25_random_full_F_delta}} and {{bt_C_test2024_0.25_periodic_full_F_delta}} (bootstrap estimates on pooled counts). For our controller the difference to full updating is {{bt_C_test2024_0.25_util_full_F_delta|4f}} [{{bt_C_test2024_0.25_util_full_F_lo|4f}}, {{bt_C_test2024_0.25_util_full_F_hi|4f}}]. Its lower bound is above the $-0.01$ margin, so selective inference with a quarter of the updates is non-inferior to full updating. The same holds on the 2025 release ({{bt_C_test2025_0.25_util_full_F_delta|4f}} [{{bt_C_test2025_0.25_util_full_F_lo|4f}}, {{bt_C_test2025_0.25_util_full_F_hi|4f}}]) and at 50\%. At 12.5\% the loss ({{bt_C_test2024_0.125_util_full_F_delta|4f}}) exceeds the margin, although it is half that of random selection.
+
+\diagtable
+
+\subsection{Why Does It Work? (RQ2)}
+Table~\ref{tab:diag} measures how well each scorer ranks the 64 regions by their measured skip-harm utility. The skip-harm controller reaches a Spearman correlation of {{agn_diagC_util_rho}} and finds {{agn_diagC_util_topk|pct}}\% of the true top-25\% regions (random: {{agn_diagC_random_topk|pct}}\%). The change-trained head, with the same architecture and inputs, reaches only {{agn_diagC_change_rho}}. Acoustic change is even negatively correlated with utility ({{agn_diagC_acoustic_rho}}). This explains its ranking in Table~\ref{tab:policy}: it is the worst policy at every budget, well below random. Large spectral change is not a sign of an important update.
+
+Utility is also concentrated in a few regions. The top 25\% of regions carry {{agn_diagC_conc_util|pct}}\% of the total utility but only {{agn_diagC_conc_change|pct}}\% of the representation change. Because the KL-based utility grows roughly quadratically, we also compare on matched scales. The top quarter still carries {{agn_diagC_conc_util_sqrt|pct}}\% of the square-root utility against {{agn_diagC_conc_change|pct}}\% of the change. This concentration is what makes small budgets work: the updates that matter are few, even though the representation changes almost everywhere. Figure~\ref{fig:example} shows an example. Utility concentrates in the lower-frequency regions, which our controller updates persistently, while the change-trained controller spreads its updates widely.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/example.pdf}
+\caption{Example 2024 test recording at a 25\% budget (seed 0). (a) Log-mel spectrogram with the annotated events (bars; W: wheeze, N: normal). (b) Each region's share of the measured skip-harm utility per step. (c) Nodes updated (dark) by our controller. (d) Nodes updated by the change-trained controller.}
+\label{fig:example}
+\end{figure}
+
+\ifgg
+\subsection{Transfer to Another Graph Cell (RQ3)}
+\label{sec:gg}
+We repeated the selection pipeline, with the same hyperparameters, on the plain graph-GRU cell, the strongest full-update backbone (Section~\ref{sec:backbones}). Table~\ref{tab:policygg} shows the same picture. At 25\%, the skip-harm controller preserves $F_{\mathrm{pres}}={{ggrusel_C_util@0.25_test2024_fidF}}$, against {{ggrusel_C_change@0.25_test2024_fidF}} for the change objective, {{ggrusel_C_periodic@0.25_test2024_fidF}} for periodic and {{ggrusel_C_random@0.25_test2024_fidF}} for random. It wins in every seed, by {{ps_ggrusel_test2024_0.25_util_change_fidF_min|2f}}--{{ps_ggrusel_test2024_0.25_util_change_fidF_max|2f}} over the change objective. This cell relies even more on its state (preservation {{ggrusel_C_none@0.0_test2024_fidF}} without updates), and its utility is even more concentrated ({{ggrusel_diagC_conc_util|pct}}\% in the top quarter). Against the annotations, event $F$ at 25\% is {{ggrusel_C_util@0.25_test2024_F}} versus {{ggrusel_C_full_test2024_F}} with full updates ({{bt_ggC_test2024_0.25_util_full_F_delta|4f}} [{{bt_ggC_test2024_0.25_util_full_F_lo|4f}}, {{bt_ggC_test2024_0.25_util_full_F_hi|4f}}]). Non-inferiority is therefore narrowly missed at 25\% on the 2024 set, but it holds on the 2025 release and at 50\%. The advantage of the skip-harm target is thus not specific to the AGN-Net cell.
+
+\policytable{tables/policy_gg_C.tex}{Selection policies for the plain graph-GRU cell (same setup as Table~\ref{tab:policy}).}{tab:policygg}
+\fi
+
+\subsection{Ablation Study (RQ4)}
+\paragraph*{Training target} All three utility targets clearly beat the change target (Table~\ref{tab:policy}). The hold-only target is about as good as the full two-endpoint target: slightly better at 12.5\% ({{agn_C_util_hold@0.125_test2024_fidF}} vs.\ {{agn_C_util@0.125_test2024_fidF}}) and slightly worse at 25\% ({{agn_C_util_hold@0.25_test2024_fidF}} vs.\ {{agn_C_util@0.25_test2024_fidF}}). Removing the label term costs {{bt_C_test2024_0.25_util_util_kl_fidF_delta}} $F_{\mathrm{pres}}$ at 25\% (bootstrap estimate). What matters most is that the target measures the effect on the output.
+
+\paragraph*{Refresh rule} Forcing refreshes of stale states uses part of the budget. Without it, $F_{\mathrm{pres}}$ is {{agn_C_util_norefresh@0.125_test2024_fidF}} instead of {{agn_C_util@0.125_test2024_fidF}} at 12.5\% and {{agn_C_util_norefresh@0.25_test2024_fidF}} instead of {{agn_C_util@0.25_test2024_fidF}} at 25\%. On these short recordings (at most 15\,s) the rule costs a little at the smallest budget. Its benefit, protection against arbitrarily old states, would only appear on longer streams.
+
+\paragraph*{Selective fine-tuning} Before fine-tuning (stage-A weights, Table~\ref{tab:policyA}), preservation is lower for every policy ({{agn_A_util@0.25_test2024_fidF}} for ours and {{agn_A_random@0.25_test2024_fidF}} for random at 25\%). The utility heads are still best on average, but the ordering varies across seeds. Fine-tuning under selective rollouts with distillation raises our controller to {{agn_C_util@0.25_test2024_fidF}}, while random rises only to {{agn_C_random@0.25_test2024_fidF}}. Part of this gain may come from the fine-tuning mixture, which samples the utility-based policies more often.
+
+\paragraph*{Fresh-feature path} Without the fresh features in the readout (Table~\ref{tab:policynf}), the model cannot react to the current chunk unless states are updated. Selection therefore matters even more: at 25\%, our controller preserves {{agnnf_C_util@0.25_test2024_fidF}}, against {{agnnf_C_random@0.25_test2024_fidF}} for random. The fresh path makes selective inference more forgiving, but our advantage does not depend on it.
+
+\policytable{tables/policy_A.tex}{Selection policies on the stage-A weights (before selective fine-tuning). Columns, bold and $^\dagger$ as in Table~\ref{tab:policy}.}{tab:policyA}
+\policytable{tables/policy_nf_C.tex}{Selection policies for the model without the fresh-feature path in the readout. Columns, bold and $^\dagger$ as in Table~\ref{tab:policy}.}{tab:policynf}
+
+\runtimetable
+
+\subsection{Efficiency (RQ5)}
+\label{sec:h3}
+Table~\ref{tab:runtime} and Figure~\ref{fig:runtime} report streaming latency on one CPU core. All configurations run far faster than real time: a full update takes {{rt_numpy_full@1.0_mean_ms|2f}}\,ms per 40\,ms chunk in the NumPy runtime, of which {{rt_numpy_full@1.0_graph|2f}}\,ms is the graph update. With our controller at 25\%, the graph update drops to {{rt_numpy_util@0.25_graph|2f}}\,ms, but the controller adds {{rt_numpy_util@0.25_selection|2f}}\,ms. The net speedup is {{rt_numpy_util@0.125_speedup|2f}}$\times$ at 12.5\%, {{rt_numpy_util@0.25_speedup|2f}}$\times$ at 25\% and {{rt_numpy_util@0.5_speedup|2f}}$\times$ at 50\%. Random and periodic selection are faster ({{rt_numpy_random@0.25_speedup|2f}}$\times$ and {{rt_numpy_periodic@0.25_speedup|2f}}$\times$ at 25\%) because their scores are almost free, but they preserve far fewer events. Removing the graph entirely gives {{rt_numpy_none@0.0_speedup|2f}}$\times$, an upper bound on the possible gain. In the PyTorch runtime, operator-launch overhead dominates the small graph, and selective inference is slower than full updating ({{rt_torch_util@0.25_speedup|2f}}$\times$). The efficiency gain is therefore real but modest, and it depends on a lean runtime and on keeping the controller cheap.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/runtime_numpy.pdf}
+\caption{Per-chunk latency by stage in the NumPy runtime (one CPU core, mean over seeds).}
+\label{fig:runtime}
+\end{figure}
+
+\archtable
+
+\subsection{Comparison of Full-Update Backbones}
+\label{sec:backbones}
+Table~\ref{tab:arch} compares the backbones when every node is updated at every step (stage-A weights). Graph-structured state helps: the plain graph GRU is the best model, with event $F={{ggru_test2024_F}}$ and seg-adv-$F={{ggru_test2024_seg_advF}}$ on the 2024 set, ahead of the GRU, the TCN and memoryless pooling. Our AGN-Net cell, however, is not better than the plain graph GRU. Its mean event $F$ is {{agn_test2024_F}}, with a large variance across seeds: one seed is the best model in the study, while the other two are among the weakest. Absolute scores are low for all models, mainly because of the annotation shift between training and test data. Offline detectors designed for this benchmark, such as EZhouNet~\cite{chu2026ezhounet}, report higher event-level scores. Our claims concern selective computation relative to a given model, not state-of-the-art detection accuracy.

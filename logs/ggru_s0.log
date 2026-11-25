@@ -1,0 +1,23 @@
+12:42:17 device cuda NVIDIA L4
+12:42:18 arch ggru params 107505
+12:43:40 [A] ep1 loss 1.5199 valF 0.0276 advF 0.0000 frameF1 0.1363
+12:45:01 [A] ep3 loss 1.4696 valF 0.0313 advF 0.0000 frameF1 0.1660
+12:46:21 [A] ep5 loss 1.4154 valF 0.0235 advF 0.0026 frameF1 0.1732
+12:47:41 [A] ep7 loss 1.3602 valF 0.0512 advF 0.0226 frameF1 0.2471
+12:49:01 [A] ep9 loss 1.2797 valF 0.0396 advF 0.0268 frameF1 0.2754
+12:50:22 [A] ep11 loss 1.2409 valF 0.0969 advF 0.0219 frameF1 0.2758
+12:51:42 [A] ep13 loss 1.1790 valF 0.1083 advF 0.0519 frameF1 0.2980
+12:53:03 [A] ep15 loss 1.1516 valF 0.1273 advF 0.0342 frameF1 0.3088
+12:54:23 [A] ep17 loss 1.1234 valF 0.0944 advF 0.0630 frameF1 0.3152
+12:55:43 [A] ep19 loss 1.0751 valF 0.0822 advF 0.0535 frameF1 0.3204
+12:57:04 [A] ep21 loss 1.0549 valF 0.1349 advF 0.0624 frameF1 0.3106
+12:58:24 [A] ep23 loss 1.0302 valF 0.1120 advF 0.0592 frameF1 0.3210
+12:59:44 [A] ep25 loss 1.0180 valF 0.0855 advF 0.0503 frameF1 0.3161
+13:01:05 [A] ep27 loss 1.0004 valF 0.1120 advF 0.0500 frameF1 0.3271
+13:02:25 [A] ep29 loss 0.9773 valF 0.1197 advF 0.0675 frameF1 0.3380
+13:03:45 [A] ep31 loss 0.9497 valF 0.1257 advF 0.0660 frameF1 0.3440
+13:05:06 [A] ep33 loss 0.9466 valF 0.1169 advF 0.0563 frameF1 0.3340
+13:06:26 [A] ep35 loss 0.9393 valF 0.1249 advF 0.0623 frameF1 0.3412
+13:07:46 [A] ep37 loss 0.9303 valF 0.1277 advF 0.0633 frameF1 0.3423
+13:09:07 [A] ep39 loss 0.9368 valF 0.1263 advF 0.0645 frameF1 0.3408
+13:09:19 full: {"val": 0.1828, "test2024": 0.1406, "test2025": 0.0434}

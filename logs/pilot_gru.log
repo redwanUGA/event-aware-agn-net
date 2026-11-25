@@ -1,0 +1,4 @@
+12:02:11 device cuda NVIDIA H100 80GB HBM3
+12:02:13 arch gru params 398448
+12:02:19 [A] ep1 loss 1.6336 valF 0.0018 advF 0.0000 frameF1 0.1048
+12:02:21 full: {"val": 0.0022, "test2024": 0.0048, "test2025": 0.0021}

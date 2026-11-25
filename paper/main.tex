@@ -1,0 +1,98 @@
+%  MDPI Algorithms submission. Built from the shared section sources by eaagn/to_mdpi.py;
+%  numbers are filled from paper/numbers.json by eaagn/render.py.
+%=================================================================
+\documentclass[algorithms,article,submit,pdftex,oneauthor]{Definitions/mdpi}
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+\datereceived{ }
+\daterevised{ }
+\dateaccepted{ }
+\datepublished{ }
+
+%=================================================================
+% Packages and commands (most packages are loaded by the MDPI class)
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\B}{\mathcal{B}}
+\newif\ifgg
+\input{ggflag}
+
+%=================================================================
+\Title{Event-Aware AGN-Net: Learning Which Graph Updates Can Be Skipped in Streaming Respiratory Sound Event Detection}
+
+\Author{Md. Redwan Islam}
+
+\AuthorNames{Md. Redwan Islam}
+
+\address{School of Computing, University of Georgia, Athens, GA 30602, USA; MdRedwan.Islam@uga.edu}
+
+
+\input{abstract_cmd}
+
+\keyword{respiratory sound; sound event detection; selective computation; conditional computation; graph neural networks; streaming inference; wearable health monitoring; auscultation}
+
+%=================================================================
+\begin{document}
+
+\input{tables_env}
+\input{sec_intro}
+\input{sec_related}
+\input{sec_method}
+\input{sec_experiments}
+\input{sec_results}
+\input{sec_conclusion}
+
+%=================================================================
+\vspace{6pt}
+
+\funding{This research received no external funding.}
+
+\institutionalreview{Ethical review and approval were not required for this study because it is a secondary analysis of the publicly available, de-identified SPRSound database~\cite{zhang2022sprsound,sprsound2025repo}; no new data were collected and no participants were contacted.}
+
+\informedconsent{Not applicable. Only publicly available, de-identified data were analysed, and no participants were contacted.}
+
+\dataavailability{The SPRSound data analysed in this study are publicly available at \url{https://github.com/SJTU-YONGFU-RESEARCH-GRP/SPRSound}~\cite{zhang2022sprsound,sprsound2025repo}. The code, data manifests, patient-disjoint split and per-recording results that support the findings are available from the author on request during peer review and will be deposited in a public repository upon publication.}
+
+\acknowledgments{The author acknowledges the Georgia Advanced Computing Resource Center (GACRC) at the University of Georgia for providing the computing resources used in this study. During the preparation of this study, the author used Claude Opus~5.5 (Anthropic) for the purposes of writing experiment and analysis code, running the experiments, analysing the results and drafting the manuscript text. The author has reviewed and edited the output and takes full responsibility for the content of this publication.}
+
+\conflictsofinterest{The author declares no conflicts of interest.}
+
+\abbreviations{Abbreviations}{%
+The following abbreviations are used in this manuscript:\\
+
+\noindent
+\begin{tabular}{@{}ll}
+CE & Cross-entropy\\
+CNN & Convolutional neural network\\
+CPU & Central processing unit\\
+DCASE & Detection and Classification of Acoustic Scenes and Events\\
+ELU & Exponential linear unit\\
+GCN & Graph convolutional network\\
+GELU & Gaussian-error linear unit\\
+GPU & Graphics processing unit\\
+GRU & Gated recurrent unit\\
+HS & Harmonic score\\
+KL & Kullback--Leibler (divergence)\\
+LN & Layer normalization\\
+MLP & Multilayer perceptron\\
+RNN & Recurrent neural network\\
+TCN & Temporal convolutional network
+\end{tabular}
+}
+
+%=================================================================
+\begin{adjustwidth}{-\extralength}{0cm}
+\reftitle{References}
+\bibliography{refs}
+\PublishersNote{}
+\end{adjustwidth}
+\end{document}

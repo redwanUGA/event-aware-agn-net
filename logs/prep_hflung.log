@@ -1,0 +1,42 @@
+{
+ "subject_overlap_train_test": 0,
+ "train": {
+  "n": 6403,
+  "subjects": 110,
+  "hours": 26.68,
+  "events": {
+   "D": 11711,
+   "I": 15863,
+   "Rhonchi": 3436,
+   "E": 8440,
+   "Wheeze": 5417,
+   "Stridor": 531
+  }
+ },
+ "val": {
+  "n": 1406,
+  "subjects": 20,
+  "hours": 5.86,
+  "events": {
+   "Wheeze": 1580,
+   "I": 2933,
+   "Stridor": 125,
+   "E": 977,
+   "D": 1912,
+   "Rhonchi": 338
+  }
+ },
+ "test": {
+  "n": 1956,
+  "subjects": 41,
+  "hours": 8.15,
+  "events": {
+   "D": 1811,
+   "I": 5094,
+   "E": 2223,
+   "Wheeze": 1426,
+   "Stridor": 29,
+   "Rhonchi": 958
+  }
+ }
+}

@@ -1,0 +1,8 @@
+16:01:46 [scaling] d=96 L=2: {"cell_params": 78982, "ctrl_params": 6841, "graph_speedup@0.25": 1.255, "ctrl_share_of_saving@0.25": 0.604, "graph_speedup@0.125": 1.48, "ctrl_share_of_saving@0.125": 0.481}
+16:01:47 [scaling] d=96 L=4: {"cell_params": 97802, "ctrl_params": 6841, "graph_speedup@0.25": 1.371, "ctrl_share_of_saving@0.25": 0.477, "graph_speedup@0.125": 1.656, "ctrl_share_of_saving@0.125": 0.367}
+16:01:49 [scaling] d=192 L=2: {"cell_params": 282886, "ctrl_params": 9145, "graph_speedup@0.25": 1.584, "ctrl_share_of_saving@0.25": 0.336, "graph_speedup@0.125": 1.833, "ctrl_share_of_saving@0.125": 0.285}
+16:01:51 [scaling] d=192 L=4: {"cell_params": 357386, "ctrl_params": 9145, "graph_speedup@0.25": 1.677, "ctrl_share_of_saving@0.25": 0.278, "graph_speedup@0.125": 1.981, "ctrl_share_of_saving@0.125": 0.225}
+16:01:54 [scaling] d=384 L=2: {"cell_params": 1077766, "ctrl_params": 13753, "graph_speedup@0.25": 1.757, "ctrl_share_of_saving@0.25": 0.191, "graph_speedup@0.125": 2.076, "ctrl_share_of_saving@0.125": 0.156}
+16:01:58 [scaling] d=384 L=4: {"cell_params": 1374218, "ctrl_params": 13753, "graph_speedup@0.25": 1.848, "ctrl_share_of_saving@0.25": 0.145, "graph_speedup@0.125": 2.183, "ctrl_share_of_saving@0.125": 0.119}
+16:02:07 [scaling] d=768 L=2: {"cell_params": 4215814, "ctrl_params": 22969, "graph_speedup@0.25": 1.823, "ctrl_share_of_saving@0.25": 0.089, "graph_speedup@0.125": 2.104, "ctrl_share_of_saving@0.125": 0.075}
+16:02:18 [scaling] d=768 L=4: {"cell_params": 5398538, "ctrl_params": 22969, "graph_speedup@0.25": 1.831, "ctrl_share_of_saving@0.25": 0.071, "graph_speedup@0.125": 2.112, "ctrl_share_of_saving@0.125": 0.058}

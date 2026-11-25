@@ -1,0 +1,105 @@
+13:27:44 device cuda NVIDIA H100 80GB HBM3
+13:27:45 arch agn params 107991
+13:29:16 [A] ep1 loss 1.5396 valF 0.0000 advF 0.0000 frameF1 0.0928 skipped 0 rollbacks 0
+13:30:42 [A] ep3 loss 1.4794 valF 0.0380 advF 0.0000 frameF1 0.1451 skipped 0 rollbacks 0
+13:32:06 [A] ep5 loss 1.4390 valF 0.0128 advF 0.0000 frameF1 0.1659 skipped 0 rollbacks 0
+13:33:31 [A] ep7 loss 1.3904 valF 0.0484 advF 0.0159 frameF1 0.2158 skipped 0 rollbacks 0
+13:34:56 [A] ep9 loss 1.3188 valF 0.0300 advF 0.0113 frameF1 0.2407 skipped 0 rollbacks 0
+13:36:22 [A] ep11 loss 1.3079 valF 0.0693 advF 0.0132 frameF1 0.2264 skipped 0 rollbacks 0
+13:37:46 [A] ep13 loss 1.2514 valF 0.0527 advF 0.0383 frameF1 0.2442 skipped 0 rollbacks 0
+13:39:12 [A] ep15 loss 1.2282 valF 0.0836 advF 0.0212 frameF1 0.2845 skipped 0 rollbacks 0
+13:40:36 [A] ep17 loss 1.2123 valF 0.0523 advF 0.0294 frameF1 0.3073 skipped 0 rollbacks 0
+13:42:01 [A] ep19 loss 1.1695 valF 0.0741 advF 0.0198 frameF1 0.3078 skipped 0 rollbacks 0
+13:43:26 [A] ep21 loss 1.1516 valF 0.0985 advF 0.0384 frameF1 0.2887 skipped 0 rollbacks 0
+13:44:51 [A] ep23 loss 1.1145 valF 0.1233 advF 0.0453 frameF1 0.3131 skipped 0 rollbacks 0
+13:46:16 [A] ep25 loss 1.1185 valF 0.0812 advF 0.0483 frameF1 0.3144 skipped 0 rollbacks 0
+13:47:41 [A] ep27 loss 1.1030 valF 0.0921 advF 0.0500 frameF1 0.3238 skipped 0 rollbacks 0
+13:49:05 [A] ep29 loss 1.0827 valF 0.0959 advF 0.0503 frameF1 0.3242 skipped 0 rollbacks 0
+13:50:30 [A] ep31 loss 1.0558 valF 0.1276 advF 0.0492 frameF1 0.3251 skipped 0 rollbacks 0
+13:51:54 [A] ep33 loss 1.0523 valF 0.0984 advF 0.0467 frameF1 0.3194 skipped 0 rollbacks 0
+13:53:19 [A] ep35 loss 1.0474 valF 0.1084 advF 0.0483 frameF1 0.3289 skipped 0 rollbacks 0
+13:54:44 [A] ep37 loss 1.0361 valF 0.1148 advF 0.0504 frameF1 0.3283 skipped 0 rollbacks 0
+13:56:09 [A] ep39 loss 1.0460 valF 0.1150 advF 0.0511 frameF1 0.3273 skipped 0 rollbacks 0
+13:58:25 [B] ep0 ctrl loss 0.1518
+14:00:44 [B] ep1 ctrl loss 0.0891
+14:03:04 [B] ep2 ctrl loss 0.0819
+14:05:25 [B] ep3 ctrl loss 0.0770
+14:07:44 [B] ep4 ctrl loss 0.0743
+14:10:05 [B] ep5 ctrl loss 0.0753
+14:10:25 [diag A] {"spearman": {"random": -0.021873824298381805, "periodic": 0.12932159006595612, "energy": -0.05278529226779938, "acoustic": -0.33511295914649963, "util": 0.7696688771247864, "util_hold": 0.7714620232582092, "util_kl": 0.685598611831665, "change": 0.5184302926063538}, "topk_overlap": {"random": 0.23823274672031403, "periodic": 0.297438383102417, "energy": 0.3319316506385803, "acoustic": 0.13307444751262665, "util": 0.8763242363929749, "util_hold": 0.8748582601547241, "util_kl": 0.824966549873352, "change": 0.6046297550201416}, "conc_util_top25": 0.9301260709762573, "conc_change_top25": 0.4030207693576813}
+14:10:39 [A] full: {"val": [0.1732, 0.6801], "test2024": [0.1585, 0.8384], "test2025": [0.0425, 0.3597]}
+14:10:57 [A] none@0.0: t24 F 0.0000 segF 0.0713 fidF 0.0039 seg_advF 0.1114 fid_advR 0.0243 agree 0.2599 | t25 segF 0.0236 fidF 0.0049 upd 0.000 (18s)
+14:12:41 [A] random@0.125: t24 F 0.0147 segF 0.7097 fidF 0.0542 seg_advF 0.1821 fid_advR 0.1963 agree 0.6788 | t25 segF 0.2769 fidF 0.0780 upd 0.125 (103s)
+14:13:31 [A] periodic@0.125: t24 F 0.0190 segF 0.7791 fidF 0.0716 seg_advF 0.1956 fid_advR 0.2093 agree 0.7565 | t25 segF 0.3069 fidF 0.0971 upd 0.125 (50s)
+14:14:38 [A] energy@0.125: t24 F 0.0192 segF 0.7099 fidF 0.0746 seg_advF 0.1866 fid_advR 0.2617 agree 0.6788 | t25 segF 0.2548 fidF 0.1228 upd 0.125 (68s)
+14:15:56 [A] acoustic@0.125: t24 F 0.0054 segF 0.2610 fidF 0.0232 seg_advF 0.1370 fid_advR 0.1290 agree 0.3656 | t25 segF 0.0742 fidF 0.0714 upd 0.125 (78s)
+14:17:35 [A] change@0.125: t24 F 0.0243 segF 0.7389 fidF 0.1080 seg_advF 0.2000 fid_advR 0.2710 agree 0.7273 | t25 segF 0.2988 fidF 0.1224 upd 0.125 (98s)
+14:19:07 [A] util_kl@0.125: t24 F 0.0831 segF 0.7450 fidF 0.1858 seg_advF 0.2394 fid_advR 0.3065 agree 0.7421 | t25 segF 0.2861 fidF 0.1654 upd 0.125 (92s)
+14:20:28 [A] util_hold@0.125: t24 F 0.0891 segF 0.7652 fidF 0.2193 seg_advF 0.2133 fid_advR 0.2318 agree 0.7758 | t25 segF 0.2993 fidF 0.2041 upd 0.125 (81s)
+14:21:51 [A] util@0.125: t24 F 0.0949 segF 0.7636 fidF 0.2214 seg_advF 0.2343 fid_advR 0.2374 agree 0.7746 | t25 segF 0.2991 fidF 0.2059 upd 0.125 (83s)
+14:23:53 [A] oracle@0.125: t24 F 0.1311 segF 0.7856 fidF 0.2890 seg_advF 0.2334 fid_advR 0.3178 agree 0.8157 | t25 segF 0.3074 fidF 0.2551 upd 0.125 (122s)
+14:25:23 [A] random@0.25: t24 F 0.0175 segF 0.8177 fidF 0.1032 seg_advF 0.2276 fid_advR 0.2430 agree 0.8092 | t25 segF 0.3329 fidF 0.1473 upd 0.250 (90s)
+14:26:10 [A] periodic@0.25: t24 F 0.0124 segF 0.8252 fidF 0.1149 seg_advF 0.2342 fid_advR 0.2542 agree 0.8236 | t25 segF 0.3319 fidF 0.1771 upd 0.250 (46s)
+14:27:25 [A] energy@0.25: t24 F 0.0381 segF 0.8088 fidF 0.2111 seg_advF 0.2429 fid_advR 0.3850 agree 0.8242 | t25 segF 0.3128 fidF 0.3100 upd 0.250 (76s)
+14:28:37 [A] acoustic@0.25: t24 F 0.0048 segF 0.1448 fidF 0.0233 seg_advF 0.1515 fid_advR 0.1551 agree 0.3062 | t25 segF 0.0517 fidF 0.1122 upd 0.250 (71s)
+14:30:10 [A] change@0.25: t24 F 0.0823 segF 0.8073 fidF 0.3061 seg_advF 0.2316 fid_advR 0.3701 agree 0.8509 | t25 segF 0.3388 fidF 0.2913 upd 0.250 (94s)
+14:31:33 [A] util_kl@0.25: t24 F 0.1537 segF 0.7822 fidF 0.3200 seg_advF 0.2286 fid_advR 0.3888 agree 0.8061 | t25 segF 0.3115 fidF 0.3195 upd 0.250 (83s)
+14:33:15 [A] util_hold@0.25: t24 F 0.1526 segF 0.7866 fidF 0.2631 seg_advF 0.2285 fid_advR 0.3701 agree 0.7867 | t25 segF 0.3124 fidF 0.3079 upd 0.250 (102s)
+14:34:55 [A] util@0.25: t24 F 0.1432 segF 0.7908 fidF 0.2771 seg_advF 0.2627 fid_advR 0.3776 agree 0.7947 | t25 segF 0.3174 fidF 0.3183 upd 0.250 (99s)
+14:36:59 [A] oracle@0.25: t24 F 0.1754 segF 0.8102 fidF 0.3795 seg_advF 0.2426 fid_advR 0.4486 agree 0.8559 | t25 segF 0.3322 fidF 0.4130 upd 0.250 (124s)
+14:38:14 [A] random@0.5: t24 F 0.0473 segF 0.8408 fidF 0.2307 seg_advF 0.2458 fid_advR 0.3757 agree 0.8714 | t25 segF 0.3545 fidF 0.3029 upd 0.500 (75s)
+14:39:19 [A] periodic@0.5: t24 F 0.0479 segF 0.8372 fidF 0.2703 seg_advF 0.2815 fid_advR 0.4542 agree 0.8852 | t25 segF 0.3511 fidF 0.3622 upd 0.500 (65s)
+14:40:46 [A] energy@0.5: t24 F 0.0452 segF 0.8339 fidF 0.3485 seg_advF 0.2421 fid_advR 0.5907 agree 0.8839 | t25 segF 0.3457 fidF 0.4913 upd 0.500 (87s)
+14:42:12 [A] acoustic@0.5: t24 F 0.0114 segF 0.2926 fidF 0.0380 seg_advF 0.1817 fid_advR 0.2318 agree 0.3819 | t25 segF 0.1135 fidF 0.1426 upd 0.500 (86s)
+14:43:51 [A] change@0.5: t24 F 0.1563 segF 0.8325 fidF 0.7202 seg_advF 0.2608 fid_advR 0.6486 agree 0.9491 | t25 segF 0.3550 fidF 0.6565 upd 0.500 (100s)
+14:45:35 [A] util_kl@0.5: t24 F 0.1888 segF 0.8281 fidF 0.6978 seg_advF 0.2521 fid_advR 0.7944 agree 0.9436 | t25 segF 0.3517 fidF 0.6955 upd 0.500 (104s)
+14:47:19 [A] util_hold@0.5: t24 F 0.1874 segF 0.8303 fidF 0.7342 seg_advF 0.2573 fid_advR 0.8393 agree 0.9527 | t25 segF 0.3531 fidF 0.7586 upd 0.500 (104s)
+14:49:04 [A] util@0.5: t24 F 0.1867 segF 0.8300 fidF 0.7262 seg_advF 0.2591 fid_advR 0.8336 agree 0.9505 | t25 segF 0.3525 fidF 0.7442 upd 0.500 (104s)
+14:51:06 [A] oracle@0.5: t24 F 0.1831 segF 0.8320 fidF 0.7694 seg_advF 0.2638 fid_advR 0.8542 agree 0.9601 | t25 segF 0.3539 fidF 0.7898 upd 0.500 (122s)
+14:52:28 [A] util_norefresh@0.125: t24 F 0.0901 segF 0.7573 fidF 0.1947 seg_advF 0.2290 fid_advR 0.2206 agree 0.7510 | t25 segF 0.2933 fidF 0.1837 upd 0.125 (82s)
+14:54:07 [A] util_norefresh@0.25: t24 F 0.1372 segF 0.7870 fidF 0.2497 seg_advF 0.2552 fid_advR 0.3551 agree 0.7827 | t25 segF 0.3130 fidF 0.2964 upd 0.250 (99s)
+14:55:48 [A] util_norefresh@0.5: t24 F 0.1867 segF 0.8300 fidF 0.7258 seg_advF 0.2572 fid_advR 0.8299 agree 0.9504 | t25 segF 0.3524 fidF 0.7448 upd 0.500 (101s)
+14:57:31 [C] ep0 loss 1.2293
+14:59:19 [C] ep1 loss 1.1968
+15:01:02 [C] ep2 loss 1.2086
+15:02:47 [C] ep3 loss 1.1969
+15:04:35 [C] ep4 loss 1.1916
+15:06:28 [C] ep5 loss 1.2003
+15:08:13 [C] ep6 loss 1.1685
+15:09:58 [C] ep7 loss 1.1711
+15:12:16 [B] ep0 ctrl loss 0.0914
+15:14:32 [B] ep1 ctrl loss 0.0893
+15:14:52 [diag C] {"spearman": {"random": -0.012313852086663246, "periodic": 0.07717452943325043, "energy": 0.05921638756990433, "acoustic": -0.21338315308094025, "util": 0.6946737766265869, "util_hold": 0.6975798010826111, "util_kl": 0.6460965871810913, "change": 0.31778237223625183}, "topk_overlap": {"random": 0.24008437991142273, "periodic": 0.2939686179161072, "energy": 0.3461928963661194, "acoustic": 0.14627861976623535, "util": 0.8485416769981384, "util_hold": 0.847686767578125, "util_kl": 0.8240779042243958, "change": 0.44643405079841614}, "conc_util_top25": 0.9140851497650146, "conc_change_top25": 0.42256855964660645}
+15:15:06 [C] full: {"val": [0.1735, 0.6728], "test2024": [0.1739, 0.8297], "test2025": [0.0548, 0.369]}
+15:15:24 [C] none@0.0: t24 F 0.0039 segF 0.6937 fidF 0.0281 seg_advF 0.1158 fid_advR 0.0191 agree 0.5087 | t25 segF 0.2844 fidF 0.0296 upd 0.000 (18s)
+15:17:06 [C] random@0.125: t24 F 0.0328 segF 0.8020 fidF 0.1040 seg_advF 0.2151 fid_advR 0.1962 agree 0.7680 | t25 segF 0.3238 fidF 0.1323 upd 0.125 (102s)
+15:17:55 [C] periodic@0.125: t24 F 0.0311 segF 0.8293 fidF 0.1330 seg_advF 0.2194 fid_advR 0.2535 agree 0.7957 | t25 segF 0.3371 fidF 0.1625 upd 0.125 (49s)
+15:19:02 [C] energy@0.125: t24 F 0.0272 segF 0.8035 fidF 0.1200 seg_advF 0.2235 fid_advR 0.2639 agree 0.7679 | t25 segF 0.3046 fidF 0.1576 upd 0.125 (67s)
+15:20:19 [C] acoustic@0.125: t24 F 0.0243 segF 0.6170 fidF 0.0568 seg_advF 0.1610 fid_advR 0.1354 agree 0.5908 | t25 segF 0.2305 fidF 0.0606 upd 0.125 (78s)
+15:21:48 [C] change@0.125: t24 F 0.0472 segF 0.7547 fidF 0.1919 seg_advF 0.2494 fid_advR 0.3698 agree 0.7627 | t25 segF 0.3349 fidF 0.1923 upd 0.125 (89s)
+15:23:11 [C] util_kl@0.125: t24 F 0.1076 segF 0.8104 fidF 0.3995 seg_advF 0.2726 fid_advR 0.4549 agree 0.8738 | t25 segF 0.3541 fidF 0.3842 upd 0.125 (82s)
+15:24:27 [C] util_hold@0.125: t24 F 0.1214 segF 0.8278 fidF 0.4573 seg_advF 0.2819 fid_advR 0.4583 agree 0.8974 | t25 segF 0.3583 fidF 0.4530 upd 0.125 (77s)
+15:25:44 [C] util@0.125: t24 F 0.1259 segF 0.8246 fidF 0.4578 seg_advF 0.2879 fid_advR 0.4757 agree 0.8967 | t25 segF 0.3566 fidF 0.4516 upd 0.125 (77s)
+15:27:36 [C] oracle@0.125: t24 F 0.1453 segF 0.8185 fidF 0.5624 seg_advF 0.2797 fid_advR 0.5278 agree 0.9118 | t25 segF 0.3488 fidF 0.4784 upd 0.125 (112s)
+15:29:05 [C] random@0.25: t24 F 0.0390 segF 0.8350 fidF 0.1604 seg_advF 0.2522 fid_advR 0.3125 agree 0.8163 | t25 segF 0.3449 fidF 0.1903 upd 0.250 (89s)
+15:29:51 [C] periodic@0.25: t24 F 0.0476 segF 0.8409 fidF 0.1875 seg_advF 0.2815 fid_advR 0.3125 agree 0.8302 | t25 segF 0.3469 fidF 0.2306 upd 0.250 (46s)
+15:31:05 [C] energy@0.25: t24 F 0.0429 segF 0.8387 fidF 0.2806 seg_advF 0.2889 fid_advR 0.5104 agree 0.8551 | t25 segF 0.3553 fidF 0.3971 upd 0.250 (74s)
+15:32:16 [C] acoustic@0.25: t24 F 0.0200 segF 0.4710 fidF 0.0460 seg_advF 0.1650 fid_advR 0.1823 agree 0.4897 | t25 segF 0.1798 fidF 0.0663 upd 0.250 (71s)
+15:33:39 [C] change@0.25: t24 F 0.0875 segF 0.8033 fidF 0.3275 seg_advF 0.2760 fid_advR 0.4392 agree 0.8465 | t25 segF 0.3455 fidF 0.3166 upd 0.250 (84s)
+15:34:57 [C] util_kl@0.25: t24 F 0.1664 segF 0.8254 fidF 0.7423 seg_advF 0.2994 fid_advR 0.6962 agree 0.9486 | t25 segF 0.3590 fidF 0.6811 upd 0.250 (78s)
+15:36:21 [C] util_hold@0.25: t24 F 0.1726 segF 0.8249 fidF 0.7670 seg_advF 0.3073 fid_advR 0.6979 agree 0.9555 | t25 segF 0.3590 fidF 0.7149 upd 0.250 (84s)
+15:37:41 [C] util@0.25: t24 F 0.1728 segF 0.8262 fidF 0.7716 seg_advF 0.3038 fid_advR 0.6858 agree 0.9555 | t25 segF 0.3601 fidF 0.7148 upd 0.250 (80s)
+15:39:35 [C] oracle@0.25: t24 F 0.1746 segF 0.8243 fidF 0.7931 seg_advF 0.2986 fid_advR 0.7188 agree 0.9609 | t25 segF 0.3593 fidF 0.7473 upd 0.250 (114s)
+15:40:49 [C] random@0.5: t24 F 0.0934 segF 0.8407 fidF 0.2963 seg_advF 0.2809 fid_advR 0.4132 agree 0.8721 | t25 segF 0.3663 fidF 0.3499 upd 0.500 (74s)
+15:41:54 [C] periodic@0.5: t24 F 0.1029 segF 0.8389 fidF 0.3560 seg_advF 0.2970 fid_advR 0.4913 agree 0.8895 | t25 segF 0.3630 fidF 0.4260 upd 0.500 (64s)
+15:43:20 [C] energy@0.5: t24 F 0.0513 segF 0.8408 fidF 0.3855 seg_advF 0.2878 fid_advR 0.6545 agree 0.8823 | t25 segF 0.3594 fidF 0.5423 upd 0.500 (86s)
+15:44:45 [C] acoustic@0.5: t24 F 0.0388 segF 0.4765 fidF 0.0835 seg_advF 0.1856 fid_advR 0.2917 agree 0.5491 | t25 segF 0.1971 fidF 0.1014 upd 0.500 (85s)
+15:46:15 [C] change@0.5: t24 F 0.1362 segF 0.8232 fidF 0.5823 seg_advF 0.2983 fid_advR 0.5521 agree 0.9182 | t25 segF 0.3563 fidF 0.5708 upd 0.500 (91s)
+15:47:59 [C] util_kl@0.5: t24 F 0.1751 segF 0.8288 fidF 0.9458 seg_advF 0.3005 fid_advR 0.9462 agree 0.9895 | t25 segF 0.3654 fidF 0.9149 upd 0.500 (104s)
+15:49:43 [C] util_hold@0.5: t24 F 0.1787 segF 0.8275 fidF 0.9191 seg_advF 0.3016 fid_advR 0.9253 agree 0.9840 | t25 segF 0.3652 fidF 0.9029 upd 0.500 (104s)
+15:51:28 [C] util@0.5: t24 F 0.1788 segF 0.8277 fidF 0.9250 seg_advF 0.3012 fid_advR 0.9288 agree 0.9849 | t25 segF 0.3653 fidF 0.9055 upd 0.500 (104s)
+15:53:29 [C] oracle@0.5: t24 F 0.1785 segF 0.8270 fidF 0.9052 seg_advF 0.2976 fid_advR 0.9045 agree 0.9806 | t25 segF 0.3654 fidF 0.8998 upd 0.500 (122s)
+15:54:41 [C] util_norefresh@0.125: t24 F 0.1380 segF 0.8199 fidF 0.5212 seg_advF 0.2786 fid_advR 0.4462 agree 0.9047 | t25 segF 0.3563 fidF 0.4803 upd 0.125 (72s)
+15:56:11 [C] util_norefresh@0.25: t24 F 0.1683 segF 0.8238 fidF 0.7431 seg_advF 0.3034 fid_advR 0.6510 agree 0.9499 | t25 segF 0.3566 fidF 0.6872 upd 0.250 (90s)
+15:57:52 [C] util_norefresh@0.5: t24 F 0.1785 segF 0.8278 fidF 0.9249 seg_advF 0.3012 fid_advR 0.9358 agree 0.9848 | t25 segF 0.3652 fidF 0.9049 upd 0.500 (101s)
+15:57:52 done

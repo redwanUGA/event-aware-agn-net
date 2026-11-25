@@ -1,0 +1,9 @@
+equivalence {'full_maxabs': 0.0001963973045349121, 'util25_maxabs': 0.0002015829086303711}
+full@1.0 {"median_ms": 3.1831, "p95_ms": 3.2675, "p99_ms": 3.2967, "max_ms": 3.7115, "mean_ms": 3.0691, "rtf": 0.0767, "upd_nodes": 64.0, "speedup_median": 1.0, "speedup_q25": 1.0, "speedup_q75": 1.0}
+none@0.0 {"median_ms": 1.4319, "p95_ms": 1.4875, "p99_ms": 1.5232, "max_ms": 1.7752, "mean_ms": 1.4051, "rtf": 0.0351, "upd_nodes": 0.0, "speedup_median": 2.193, "speedup_q25": 2.1496, "speedup_q75": 2.2144}
+random@0.25 {"median_ms": 2.421, "p95_ms": 2.4916, "p99_ms": 2.5228, "max_ms": 3.973, "mean_ms": 2.3206, "rtf": 0.058, "upd_nodes": 16.0, "speedup_median": 1.3194, "speedup_q25": 1.3107, "speedup_q75": 1.3327}
+periodic@0.25 {"median_ms": 2.4074, "p95_ms": 2.4746, "p99_ms": 2.5078, "max_ms": 4.0301, "mean_ms": 2.3092, "rtf": 0.0577, "upd_nodes": 16.0, "speedup_median": 1.3268, "speedup_q25": 1.3202, "speedup_q75": 1.3369}
+acoustic@0.25 {"median_ms": 2.4279, "p95_ms": 2.4933, "p99_ms": 2.519, "max_ms": 2.7508, "mean_ms": 2.3273, "rtf": 0.0582, "upd_nodes": 16.0, "speedup_median": 1.3143, "speedup_q25": 1.3081, "speedup_q75": 1.3263}
+util@0.125 {"median_ms": 2.5899, "p95_ms": 2.6727, "p99_ms": 2.7135, "max_ms": 4.2389, "mean_ms": 2.4991, "rtf": 0.0625, "upd_nodes": 8.0, "speedup_median": 1.2252, "speedup_q25": 1.2214, "speedup_q75": 1.2304}
+util@0.25 {"median_ms": 2.7833, "p95_ms": 2.8657, "p99_ms": 2.903, "max_ms": 4.3506, "mean_ms": 2.6851, "rtf": 0.0671, "upd_nodes": 16.0, "speedup_median": 1.1407, "speedup_q25": 1.1372, "speedup_q75": 1.1443}
+util@0.5 {"median_ms": 3.1055, "p95_ms": 3.1858, "p99_ms": 3.2213, "max_ms": 3.3952, "mean_ms": 2.997, "rtf": 0.0749, "upd_nodes": 32.0, "speedup_median": 1.0235, "speedup_q25": 1.0212, "speedup_q75": 1.026}

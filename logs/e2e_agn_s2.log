@@ -1,0 +1,11 @@
+16:47:38 [e2e] ep0 loss 1.2555 tau 0.50 (167s)
+16:50:22 [e2e] ep1 loss 1.2731 tau 0.41 (164s)
+16:53:04 [e2e] ep2 loss 1.2912 tau 0.32 (162s)
+16:55:45 [e2e] ep3 loss 1.2744 tau 0.23 (161s)
+16:58:16 [e2e] ep4 loss 1.2787 tau 0.14 (151s)
+17:00:34 [e2e] ep5 loss 1.3241 tau 0.05 (138s)
+17:00:54 [Ce2e] full: {"val": [0.0817, 0.6379], "test2024": [0.045, 0.8342], "test2025": [0.0171, 0.3432]}
+17:01:58 [Ce2e] e2e@0.125: t24 F 0.0377 segF 0.8165 fidF 0.4838 seg_advF 0.1763 fid_advR 0.3103 agree 0.8703 | t25 segF 0.3371 fidF 0.5118 upd 0.125 (65s)
+17:03:08 [Ce2e] e2e@0.25: t24 F 0.0442 segF 0.8235 fidF 0.4965 seg_advF 0.1726 fid_advR 0.3167 agree 0.8757 | t25 segF 0.3416 fidF 0.5235 upd 0.250 (70s)
+17:04:35 [Ce2e] e2e@0.5: t24 F 0.0364 segF 0.8147 fidF 0.5206 seg_advF 0.1672 fid_advR 0.3055 agree 0.8842 | t25 segF 0.3358 fidF 0.5555 upd 0.500 (87s)
+17:04:35 e2e done
