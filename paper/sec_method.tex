@@ -19,14 +19,15 @@ Audio arrives in 40\,ms chunks. After chunk $t$, the model must output class pos
 Audio is processed at its native 8\,kHz. For each 10\,ms frame we compute two log-mel spectra (128 bands, 50--4000\,Hz) with 25\,ms and 100\,ms Hann windows that end at the current frame, so no future samples are used. Features are standardized with fixed statistics from the training set. A causal $5{\times}3$ convolution (2$\to$16 channels) runs at the frame rate, the four frames of a chunk are averaged, and a second causal $5{\times}3$ convolution (16$\to$32 channels, frequency stride 2) runs at the chunk rate, followed by LayerNorm. This gives a 32-dimensional feature $x_{i,t}$ for each of the 64 frequency regions. The encoder only sees the last 14 frames (about 0.2\,s), so longer temporal context must come from the graph state.
 
 \subsection{Persistent Acoustic Graph}
+\label{sec:graph}
 Each node $i$ is anchored to a fixed pair of adjacent mel channels at both resolutions, so its identity is stable over time while its features change. Edges connect nodes at frequency distance 1 and 2. This chain is the simplest topology, and it cannot pass evidence between distant harmonics in one step. Wheezes and stridor are (quasi-)harmonic, with energy at integer multiples of a fundamental frequency, so we also build a \emph{harmonic graph} that additionally links each node to the nodes nearest to twice and three times its centre frequency (relative mismatch below 6\%). This adds 82 edges, with at most 8 neighbours per node. Selection, budgets and training are unchanged; only the regions $\B_i$ become larger. Each node keeps a 96-dimensional state. For nodes in the update set $\U_t$, the AGN-Net cell computes
 \begin{align}
-h^{(0)}_i &= \mathrm{GELU}\big(W_{\mathrm{in}}[x_{i,t};z_{i,t-1}] + e_i\big),\\
+h^{(0)}_i &= \mathrm{GELU}\big(W_{\mathrm{in}}[x_{i,t};z_{i,t-1}] + e_i\big),\label{eq:cell-first}\\
 h^{(\ell)}_i &= \mathrm{ELU}\Big(\sum_{j\in\mathcal{N}_{\U}(i)}\alpha^{(\ell)}_{ij}W^{(\ell)}h^{(\ell-1)}_j+\beta_\ell h^{(\ell-1)}_i\Big),\\
 f_i &= \mathrm{LN}\Big(\textstyle\sum_{\ell=0}^{2}\mathrm{softmax}(w)_\ell\,h^{(\ell)}_i\Big),\\
 c_i &= \tanh(\mathrm{MLP}(f_i)),\\
 \lambda_i &= \sigma\big(w_g^\top[f_i;z_{i,t-1}]+b_g\big),\\
-z_{i,t} &= (1-\lambda_i)\,z_{i,t-1}+\lambda_i\,c_i,
+z_{i,t} &= (1-\lambda_i)\,z_{i,t-1}+\lambda_i\,c_i,\label{eq:cell-update}
 \end{align}
 for layers $\ell=1,2$. Nodes outside $\U_t$ keep their state, $z_{i,t}=z_{i,t-1}$. Here GELU and ELU are the Gaussian-error and exponential linear units, LN is layer normalization, MLP is a multilayer perceptron, $e_i$ is a learned node embedding, $\alpha^{(\ell)}_{ij}$ are graph-attention weights~\cite{velickovic2018graph} computed only over neighbours inside $\U_t$ (AGN-Net's induced-subgraph update~\cite{islam2026agnnet}), $\beta_\ell$ are learned residual weights, and $w$ fuses the layers. AGN-Net's temporal-momentum update is kept, with its global momentum replaced by a per-node gate $\lambda_i$. When $\U_t$ contains all nodes, we call the model the \emph{full-update} model. For the plain graph-GRU cell used in Section~\ref{sec:generality}, $z_{i,t}=\mathrm{GRU}\big(\mathrm{GELU}(W[x_{i,t};\bar z_{\mathcal{N}(i),t-1}]+e_i),\,z_{i,t-1}\big)$ with $\bar z_{\mathcal{N}(i)}$ the mean of the neighbour states; a selective update applies this only to $i\in\U_t$ and reads the (possibly stale) states of all neighbours, so for this cell the boundary defect of Proposition~\ref{prop:bound} is zero.
 
@@ -62,23 +63,44 @@ Training has three stages. \emph{Stage A} trains the encoder, cell and readout w
 
 \subsection{Error Analysis}
 \label{sec:theory}
-Selective updating differs from full updating in two ways: nodes outside $\U_t$ keep stale states (\emph{skip defect}), and nodes inside $\U_t$ miss messages from neighbours outside it (\emph{boundary defect}). AGN-Net~\cite{islam2026agnnet} bounded the first; we add the second. Let both models share weights and inputs, start from $Z_0=0$, let $\Phi$ be the full-update transition, and let $e_t=\max_i\|z^{\mathrm{full}}_{i,t}-z^{\mathrm{sel}}_{i,t}\|_2$.
+Selective updating differs from full updating in two ways: nodes outside $\U_t$ keep stale states (\emph{skip defect}), and nodes inside $\U_t$ miss messages from neighbours outside it (\emph{boundary defect}). AGN-Net~\cite{islam2026agnnet} bounded the first; we add the second. Let $V=\{1,\dots,N\}$ and equip the state space with the norm $\|Z\|_{\infty,2}=\max_{i\in V}\|z_i\|_2$. For the current input $x_t$, let $\Phi_t(Z)=\Phi(Z,x_t)$ denote the full-graph transition, i.e., Equations~(\ref{eq:cell-first})--(\ref{eq:cell-update}) applied to every node on the full graph. For $U\subseteq V$, let $\Phi_t^{U}$ denote the selective transition, which applies Equations~(\ref{eq:cell-first})--(\ref{eq:cell-update}) on the subgraph induced by $U$ to the nodes in $U$ and leaves the other states unchanged, $[\Phi_t^{U}(Z)]_i=z_i$ for $i\notin U$. Both models share weights and inputs and follow
+\[
+Z^{\mathrm{full}}_t=\Phi_t(Z^{\mathrm{full}}_{t-1}),\qquad Z^{\mathrm{sel}}_t=\Phi_t^{\U_t}(Z^{\mathrm{sel}}_{t-1}),\qquad Z^{\mathrm{full}}_0=Z^{\mathrm{sel}}_0,
+\]
+and we write $e_t=\|Z^{\mathrm{full}}_t-Z^{\mathrm{sel}}_t\|_{\infty,2}$.
 
 \begin{Proposition}
 \label{prop:bound}
-Assume $\Phi(\cdot,x_t)$ is $\gamma_t$-Lipschitz in the norm $\max_i\|\cdot\|_2$. Let $\delta^{\mathrm{skip}}_t=\max_{i\notin\U_t}\lambda_i\|c_i-z^{\mathrm{sel}}_{i,t-1}\|_2$ and $\delta^{\mathrm{bnd}}_t=\max_{i\in\U_t}\|\Phi_i(Z^{\mathrm{sel}}_{t-1})-\Phi^{\U_t}_i(Z^{\mathrm{sel}}_{t-1})\|_2$, both evaluated at the selective state. Then $e_t\le\gamma_t e_{t-1}+\max\{\delta^{\mathrm{skip}}_t,\delta^{\mathrm{bnd}}_t\}$, and hence
+Assume that, for each $t$, $\Phi_t$ is $\gamma_t$-Lipschitz in $\|\cdot\|_{\infty,2}$ on a domain that contains the states of both trajectories, with $\gamma_t\ge0$. Define the skip and boundary defects, both evaluated at the selective model's previous state,
 \[
-e_t\le\sum_{s\le t}\Big(\prod_{s<r\le t}\gamma_r\Big)\max\{\delta^{\mathrm{skip}}_s,\delta^{\mathrm{bnd}}_s\}.
+\delta^{\mathrm{skip}}_t=\max_{i\notin\U_t}\big\|\Phi_{t,i}(Z^{\mathrm{sel}}_{t-1})-z^{\mathrm{sel}}_{i,t-1}\big\|_2,\qquad
+\delta^{\mathrm{bnd}}_t=\max_{i\in\U_t}\big\|\Phi_{t,i}(Z^{\mathrm{sel}}_{t-1})-\Phi^{\U_t}_{t,i}(Z^{\mathrm{sel}}_{t-1})\big\|_2,
 \]
-In particular, if $\gamma_t\le\gamma<1$ and both defects are at most $\bar\delta$, then $e_t\le\bar\delta(1-\gamma^t)/(1-\gamma)$.
+where a maximum over an empty node set is zero, and let $d_t=\max\{\delta^{\mathrm{skip}}_t,\delta^{\mathrm{bnd}}_t\}$. Then $e_t\le\gamma_t e_{t-1}+d_t$, and consequently
+\[
+e_t\le\sum_{s=1}^{t}\Big(\prod_{r=s+1}^{t}\gamma_r\Big)\,d_s ,
+\]
+where an empty product equals one. If, in addition, $\gamma_t\le\gamma<1$ and $d_t\le\bar\delta$ for all $t$, then $e_t\le\bar\delta(1-\gamma^t)/(1-\gamma)$.
 \end{Proposition}
 \begin{proof}
-Write $Z^{\mathrm{full}}_t-Z^{\mathrm{sel}}_t=[\Phi(Z^{\mathrm{full}}_{t-1})-\Phi(Z^{\mathrm{sel}}_{t-1})]+[\Phi(Z^{\mathrm{sel}}_{t-1})-Z^{\mathrm{sel}}_t]$. The first term is at most $\gamma_t e_{t-1}$. Row by row, the second term equals the skip defect for nodes outside $\U_t$ and the boundary defect for nodes inside, so its norm is their maximum. Unrolling with $e_0=0$ gives the geometric bound.
+Add and subtract $\Phi_t(Z^{\mathrm{sel}}_{t-1})$. By the triangle inequality,
+\[
+e_t\le\big\|\Phi_t(Z^{\mathrm{full}}_{t-1})-\Phi_t(Z^{\mathrm{sel}}_{t-1})\big\|_{\infty,2}+\big\|\Phi_t(Z^{\mathrm{sel}}_{t-1})-\Phi_t^{\U_t}(Z^{\mathrm{sel}}_{t-1})\big\|_{\infty,2}.
+\]
+The Lipschitz assumption bounds the first term by $\gamma_t e_{t-1}$. In the second term, skipped nodes keep their previous states, so the maximum row norm over $V\setminus\U_t$ is $\delta^{\mathrm{skip}}_t$, and the maximum row norm over $\U_t$ is $\delta^{\mathrm{bnd}}_t$. The two row sets are disjoint and cover $V$, so the second term equals $d_t$. Hence $e_t\le\gamma_t e_{t-1}+d_t$. Iterating gives $e_t\le(\prod_{r=1}^{t}\gamma_r)\,e_0+\sum_{s=1}^{t}(\prod_{r=s+1}^{t}\gamma_r)\,d_s$, and $e_0=0$. Under $\gamma_t\le\gamma<1$ and $d_t\le\bar\delta$, the sum is at most $\bar\delta\sum_{k=0}^{t-1}\gamma^k=\bar\delta(1-\gamma^t)/(1-\gamma)$.
 \end{proof}
 
-The bound shows that a small update fraction alone guarantees nothing: the error depends on how large the skipped and boundary defects are. Two caveats apply. First, the Lipschitz assumption is not enforced during training. The proof, however, only needs the \emph{secant} ratio $\gamma_t=\|\Phi(Z^{\mathrm{full}}_{t-1})-\Phi(Z^{\mathrm{sel}}_{t-1})\|/e_{t-1}$ along the two trajectories that actually occur, and this ratio can be measured; we do so in Section~\ref{sec:lip}. Second, the bound concerns the state, while the prediction depends on the frame posteriors. If the readout maps states to frame logits with Lipschitz constant $L_R$ (state norm as above, logits in the max norm), then, because log-softmax is 2-Lipschitz in the max norm, the frame KL divergence between full and selective posteriors satisfies
+For the gated AGN-Net cell, Equation~(\ref{eq:cell-update}) gives an equivalent form of the skip defect: $\Phi_{t,i}(Z^{\mathrm{sel}}_{t-1})-z^{\mathrm{sel}}_{i,t-1}=\lambda^{F}_{i,t}\,(c^{F}_{i,t}-z^{\mathrm{sel}}_{i,t-1})$, so $\delta^{\mathrm{skip}}_t=\max_{i\notin\U_t}\lambda^{F}_{i,t}\|c^{F}_{i,t}-z^{\mathrm{sel}}_{i,t-1}\|_2$, where the gate $\lambda^{F}_{i,t}\ge0$ and the candidate $c^{F}_{i,t}$ are computed on the \emph{full} graph from $Z^{\mathrm{sel}}_{t-1}$, a hypothetical update that the selective model does not perform. Defined through $\Phi_t$, the proposition applies unchanged to the graph-GRU cell, whose boundary defect is zero (Section~\ref{sec:graph}). The argument is a standard perturbation analysis, in which a one-step Lipschitz bound is iterated into a geometric series, as for the hidden states of simple recurrent networks~\cite{mitarchuk2024length}; the application-specific part is the decomposition into skipped-update and induced-subgraph defects.
+
+The result is a conditional error-propagation bound. It does not show that the learned transition contracts, that the controller makes either defect small, that a given budget guarantees a given error, or that the greedy selection minimises the bound. The gate alone does not imply contraction: for the scalar map $\Phi(z)=\tfrac12 z+\tfrac12\tanh(2z)$, which has a gate of $\tfrac12$ and a bounded candidate, $\Phi'(0)=\tfrac32>1$. The uniform condition $\gamma_t\le\gamma<1$ is therefore a substantive assumption, which nothing in training enforces. On the observed trajectories we can, however, measure the secant ratio
+\[
+\hat\gamma_t=\begin{cases}\big\|\Phi_t(Z^{\mathrm{full}}_{t-1})-\Phi_t(Z^{\mathrm{sel}}_{t-1})\big\|_{\infty,2}\,/\,e_{t-1}, & e_{t-1}>0,\\ 0, & e_{t-1}=0,\end{cases}
+\]
+which satisfies the recurrence with $\gamma_t$ replaced by $\hat\gamma_t$ (when $e_{t-1}=0$ the numerator is zero as well, because transition and input are shared). The recurrence with $\hat\gamma_t$ is an a~posteriori bound for these trajectories, valid also on steps with $\hat\gamma_t>1$; it says nothing about other pairs of states. We measure $\hat\gamma_t$ in Section~\ref{sec:lip}.
+
+The bound concerns the state, whereas the prediction depends on the frame posteriors. Hold the fresh features fixed, as both models share them, and suppose the readout maps states to frame logits with Lipschitz constant $L_R$ (state norm $\|\cdot\|_{\infty,2}$, logits in the max norm). Since log-sum-exp is 1-Lipschitz in the max norm, $\|\log p-\log q\|_\infty\le2\|a-b\|_\infty$ for $p=\mathrm{softmax}(a)$ and $q=\mathrm{softmax}(b)$, and therefore, for every frame and for the frame average,
 \begin{equation}
 \mathrm{KL}\big(p^{\mathrm{full}}_t\,\|\,p^{\mathrm{sel}}_t\big)\;\le\;2L_R\,e_t .
 \label{eq:readout}
 \end{equation}
-This links the state bound to the KL-based skip-harm objective, but only as an upper bound: the readout ignores state directions it does not use, so a large state error can leave the output unchanged. The skip-harm utility measures the output-level effect of a skip directly, which is why we use it as the training target rather than a state-level quantity. Section~\ref{sec:lip} quantifies how loose the link is.
+A small KL divergence alone does not guarantee the same predicted class: the logits $(\varepsilon,0)$ and $(0,\varepsilon)$ have different arg-max labels for every $\varepsilon>0$, while their KL divergence tends to zero. A sufficient condition for keeping a frame's arg-max label is a full-model logit margin $m_t>2L_Re_t$, where $m_t$ is the difference between the largest and second-largest full-model logits; preserving decoded events further depends on the temporal decoding rules. Eq.~(\ref{eq:readout}) thus links the state bound to the KL-based skip-harm objective, but only as an upper bound: the readout ignores state directions it does not use, so a large state error can leave the output unchanged. The skip-harm utility measures the output-level effect of a skip directly, which is why we use it as the training target rather than a state-level quantity. Section~\ref{sec:lip} quantifies how loose the link is.

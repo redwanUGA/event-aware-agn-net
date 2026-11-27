@@ -123,13 +123,13 @@ $\boldsymbol{k}$ & $\boldsymbol{H}$ & \textbf{One-step} & \textbf{Ctrl} & \textb
 
 \newcommand{\liptable}{%
 \begin{table}[H]
-\caption{Proposition~\ref{prop:bound} on real trajectories (skip-harm controller, validation recordings, stage-C weights, mean over three seeds). $\gamma_t$: secant ratio of the full-update transition between the full and selective states (``p99'': 99th percentile over steps; ``Max'': largest ratio over all steps and seeds, the only column not averaged over seeds); ``Bound'': share of steps where the one-step inequality holds (by construction, since it uses the measured $\gamma_t$); ``Readout'': median ratio $\|\ell^{\mathrm{full}}_t-\ell^{\mathrm{sel}}_t\|_\infty/e_t$ between frame logits and state error; $\rho(e,\mathrm{KL})$: Spearman correlation between the state error and the frame KL divergence across steps. For the graph GRU, selected nodes read all neighbours, so its boundary defect is zero.\label{tab:lipschitz}}
+\caption{Proposition~\ref{prop:bound} on real trajectories (skip-harm controller, validation recordings, stage-C weights, mean over three seeds). $\hat\gamma_t$: measured secant ratio of the full-update transition between the full and selective states, over steps with $e_{t-1}>0$ (``p99'': 99th percentile over steps; ``Max'': largest ratio over all steps and seeds, the only column not averaged over seeds); ``Bound'': share of steps where the one-step inequality holds (by construction, since it uses the measured $\hat\gamma_t$); ``Readout'': median ratio $\|\ell^{\mathrm{full}}_t-\ell^{\mathrm{sel}}_t\|_\infty/e_t$ between frame logits and state error; $\rho(e,\mathrm{KL})$: Spearman correlation between the state error and the frame KL divergence across steps. For the graph GRU, selected nodes read all neighbours, so its boundary defect is zero.\label{tab:lipschitz}}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{llccccccc}
 \toprule
-\textbf{Cell} & \textbf{Budget} & \textbf{Median} $\boldsymbol{\gamma_t}$ & \textbf{p99} $\boldsymbol{\gamma_t}$ & \textbf{Max} $\boldsymbol{\gamma_t}$ & $\boldsymbol{\gamma_t<1}$ \textbf{(\%)} & \textbf{Bound (\%)} & \textbf{Readout} & $\boldsymbol{\rho(e,\mathrm{KL})}$ \\
+\textbf{Cell} & \textbf{Budget} & \textbf{Median} $\boldsymbol{\hat\gamma_t}$ & \textbf{p99} $\boldsymbol{\hat\gamma_t}$ & \textbf{Max} $\boldsymbol{\hat\gamma_t}$ & $\boldsymbol{\hat\gamma_t<1}$ \textbf{(\%)} & \textbf{Bound (\%)} & \textbf{Readout} & $\boldsymbol{\rho(e,\mathrm{KL})}$ \\
 \midrule
 \tabinput{tables/lipschitz.tex}
 \bottomrule
