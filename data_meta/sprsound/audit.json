@@ -1,0 +1,89 @@
+{
+ "train_exact_dups_with_test_removed": 0,
+ "val_exact_dups_with_test_removed": 0,
+ "train_exact_dups_with_val_removed": 1,
+ "patients_val": 266,
+ "patients_val_overlap_train": 261,
+ "patients_test2024": 324,
+ "patients_test2024_overlap_train": 1,
+ "patients_test2025": 162,
+ "patients_test2025_overlap_train": 1,
+ "patients_test2025_overlap_test2024": 1,
+ "patients_train": 371,
+ "train_n": 2659,
+ "train_hours": 8.313,
+ "train_dur_min_med_max": [
+  3.65,
+  9.22,
+  15.36
+ ],
+ "train_events": {
+  "Normal": 7430,
+  "Rhonchi": 119,
+  "Fine Crackle": 1203,
+  "Wheeze": 871,
+  "Coarse Crackle": 85,
+  "Wheeze+Crackle": 32,
+  "Stridor": 44
+ },
+ "train_orig_sr": {
+  "8000": 2659
+ },
+ "val_n": 664,
+ "val_hours": 2.055,
+ "val_dur_min_med_max": [
+  4.1,
+  9.22,
+  15.36
+ ],
+ "val_events": {
+  "Normal": 1915,
+  "Fine Crackle": 272,
+  "Wheeze": 188,
+  "Coarse Crackle": 15,
+  "Wheeze+Crackle": 4,
+  "Rhonchi": 29,
+  "Stridor": 5
+ },
+ "val_orig_sr": {
+  "8000": 664
+ },
+ "test2024_n": 1704,
+ "test2024_hours": 5.937,
+ "test2024_dur_min_med_max": [
+  2.34,
+  15.36,
+  15.36
+ ],
+ "test2024_events": {
+  "Normal": 7252,
+  "Wheeze": 141,
+  "Fine Crackle": 169,
+  "Stridor": 17,
+  "Rhonchi": 62,
+  "Wheeze+Crackle": 6,
+  "Coarse Crackle": 12
+ },
+ "test2024_orig_sr": {
+  "8000": 1704
+ },
+ "test2025_n": 1309,
+ "test2025_hours": 3.865,
+ "test2025_dur_min_med_max": [
+  4.1,
+  9.22,
+  15.36
+ ],
+ "test2025_events": {
+  "Normal": 2175,
+  "Fine Crackle": 1885,
+  "Wheeze": 305,
+  "Wheeze+Crackle": 261,
+  "Coarse Crackle": 65,
+  "Rhonchi": 7,
+  "Stridor": 8
+ },
+ "test2025_orig_sr": {
+  "8000": 1309
+ }
+}

@@ -197,9 +197,11 @@ def stage_a(model, fe, tr, va, dev, a, rng, cw):
     sch = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=max(steps, 1), pct_start=0.1)
     best, best_sd, hist = -1, None, []
     gs = dict(skipped=0, rollbacks=0, good=copy.deepcopy(model.state_dict()))
+    lr_scale, restarts = 1.0, 0
     for ep in range(a.epochs_a):
         model.train(); tl, n = 0.0, 0
         gs["good"] = copy.deepcopy(model.state_dict())
+        sk0, nb = gs["skipped"], 0
         for W, Y in train_batches(tr, a.bs, a.crop_s, rng):
             feats = augment(fe(W.to(dev)), 6.0, rng)
             logits, _ = model(feats)
@@ -207,7 +209,17 @@ def stage_a(model, fe, tr, va, dev, a, rng, cw):
             opt.zero_grad(); loss.backward()
             if guarded_step(model, opt, loss, gs):
                 tl += loss.item(); n += 1
-            sch.step()
+            sch.step(); nb += 1
+            if lr_scale != 1.0:
+                for g in opt.param_groups:
+                    g["lr"] *= lr_scale
+        # divergence rule (revision): if >10% of an epoch's batches had a non-finite loss, restore the
+        # epoch's starting weights and continue with half the learning rate. Never triggers on stable runs.
+        if gs["skipped"] - sk0 > 0.1 * max(nb, 1) and restarts < 3:
+            model.load_state_dict(gs["good"]); opt.state.clear()
+            lr_scale *= 0.5; restarts += 1
+            log(f"[A] ep{ep}: {gs['skipped'] - sk0}/{nb} non-finite batches -> restored epoch start, lr scale {lr_scale}")
+            hist.append(dict(epoch=ep, restart=restarts, lr_scale=lr_scale))
         if ep % 2 == 1 or ep == a.epochs_a - 1:
             probs, _ = infer(model, fe, va, dev)
             ev = np.stack([M.event_counts(it["events"], M.decode(p, 5, 10)) for p, it in zip(probs, va)])

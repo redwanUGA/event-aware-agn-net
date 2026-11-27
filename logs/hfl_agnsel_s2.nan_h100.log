@@ -1,0 +1,5 @@
+19:16:43 device cuda NVIDIA H100 80GB HBM3
+19:16:46 arch agn params 107991
+19:20:24 [A] ep1 loss 1.5332 valF 0.0391 advF 0.0344 frameF1 0.2381 skipped 64 rollbacks 0
+19:23:57 [A] ep3 loss 0.0000 valF 0.0391 advF 0.0344 frameF1 0.2381 skipped 464 rollbacks 0
+19:27:29 [A] ep5 loss 0.0000 valF 0.0391 advF 0.0344 frameF1 0.2381 skipped 864 rollbacks 0

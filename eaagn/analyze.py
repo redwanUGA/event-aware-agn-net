@@ -217,6 +217,7 @@ def main():
     policy_table("agn", "A", "policy_A.tex", ["fidF", "fid_advR", "F", "seg_advF"])
     policy_table("agnnf", "C", "policy_nf_C.tex", ["fidF", "fid_advR", "F", "seg_advF"])
     policy_table("ggrusel", "C", "policy_gg_C.tex", ["fidF", "fid_advR", "F", "seg_advF"])
+    policy_table("agnh", "C", "policy_h_C.tex", ["fidF", "fid_advR", "F", "seg_advF"])
 
     # ---------------- ranking diagnostics (combined A and C columns)
     DA = [r["summary"].get("diag_A") for r in runs.get("agn", {}).values()]
@@ -444,7 +445,7 @@ def figures(runs, N, out):
     for arch, tag in (("agn", "C"), ("agn", "A")):
         if f"{arch}_{tag}_nseeds" not in N:
             continue
-        fig, axes = plt.subplots(1, 4, figsize=(7.16, 2.0))
+        fig, axes = plt.subplots(1, 4, figsize=(7.16, 2.5))
         panels = [("test2024", "fidF", r"(a) $F_\mathrm{pres}$, 2024"), ("test2024", "fid_advR", r"(b) $R^\mathrm{adv}_\mathrm{pres}$, 2024"),
                   ("test2025", "fidF", r"(c) $F_\mathrm{pres}$, 2025"), ("test2025", "fid_advR", r"(d) $R^\mathrm{adv}_\mathrm{pres}$, 2025")]
         for ax, (sp, m, title) in zip(axes, panels):
@@ -455,12 +456,12 @@ def figures(runs, N, out):
             none = N.get(f"{arch}_{tag}_none@0.0_{sp}_{m}", np.nan)
             ax.axhline(none, color="#8a8984", lw=0.8, ls=":")
             ax.set_xticks([12.5, 25, 50]); ax.set_xticklabels(["12.5", "25", "50"])
-            ax.set_xlabel("budget (% of nodes)"); ax.set_title(title, fontsize=7.5)
+            ax.set_xlabel("budget (% of nodes)"); ax.set_title(title, fontsize=8.5)
             ax.set_ylim(-0.02, 1.0)
         axes[0].set_ylabel("preservation vs. full update")
         h, l = axes[0].get_legend_handles_labels()
-        fig.legend(h, l, loc="lower center", ncol=7, fontsize=6.5, frameon=False, bbox_to_anchor=(0.5, -0.06))
-        fig.tight_layout(rect=(0, 0.08, 1, 1))
+        fig.legend(h, l, loc="lower center", ncol=4, fontsize=8, frameon=False, bbox_to_anchor=(0.5, -0.02))
+        fig.tight_layout(rect=(0, 0.13, 1, 1))
         fig.savefig(os.path.join(out, "figures", f"budget_{tag}.pdf"), bbox_inches="tight")
         plt.close(fig)
 
@@ -478,11 +479,11 @@ def figures(runs, N, out):
             ax.barh(range(len(keys)), v, left=left, color=COL[si], edgecolor="white", linewidth=0.8, height=0.62, label=s)
             left += v
         for i, t in enumerate(left):
-            ax.text(t + 0.02, i, f"{t:.2f}", va="center", fontsize=6.5, color="#0b0b0b")
+            ax.text(t + 0.02, i, f"{t:.2f}", va="center", fontsize=7, color="#0b0b0b")
         ax.set_yticks(range(len(keys))); ax.set_yticklabels(labels); ax.invert_yaxis()
         ax.set_xlabel(f"Mean latency per 40 ms chunk (ms), {'NumPy' if kind == 'numpy' else 'PyTorch'} runtime, one CPU core")
         ax.grid(axis="y", visible=False)
-        ax.legend(ncol=5, fontsize=6, frameon=False, loc="lower center", bbox_to_anchor=(0.45, 1.0))
+        ax.legend(ncol=5, fontsize=7, frameon=False, loc="lower center", bbox_to_anchor=(0.45, 1.0))
         fig.tight_layout()
         fig.savefig(os.path.join(out, "figures", f"runtime_{kind}.pdf"), bbox_inches="tight")
         plt.close(fig)

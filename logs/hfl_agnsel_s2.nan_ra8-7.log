@@ -1,0 +1,6 @@
+17:19:31 device cuda NVIDIA L4
+17:19:34 arch agn params 107991
+17:24:19 [A] ep1 loss 1.4823 valF 0.0925 advF 0.0432 frameF1 0.3252 skipped 0 rollbacks 0
+17:29:01 [A] ep3 loss 0.0000 valF 0.0530 advF 0.0667 frameF1 0.2368 skipped 321 rollbacks 0
+17:33:42 [A] ep5 loss 0.0000 valF 0.0530 advF 0.0667 frameF1 0.2368 skipped 721 rollbacks 0
+17:38:24 [A] ep7 loss 0.0000 valF 0.0530 advF 0.0667 frameF1 0.2368 skipped 1121 rollbacks 0

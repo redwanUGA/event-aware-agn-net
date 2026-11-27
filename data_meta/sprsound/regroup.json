@@ -1,0 +1,30 @@
+{
+ "seed": 0,
+ "dups_removed": 0,
+ "train_events_by_class": {
+  "1": 7746,
+  "2": 104,
+  "3": 839,
+  "4": 25,
+  "5": 92,
+  "6": 1115,
+  "7": 31
+ },
+ "val_events_by_class": {
+  "1": 1599,
+  "2": 44,
+  "3": 220,
+  "4": 24,
+  "5": 8,
+  "6": 360,
+  "7": 5
+ },
+ "pool_n": 3323,
+ "pool_patients": 376,
+ "train_n": 2698,
+ "val_n": 625,
+ "train_patients": 320,
+ "val_patients": 56,
+ "val_events": 2260,
+ "val_adv_events": 661
+}

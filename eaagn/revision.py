@@ -184,7 +184,7 @@ def cmd_e2ediag(a):
 # ----------------------------------------------------------------------------- R1.6: multi-step harm
 @torch.no_grad()
 def cmd_multistep(a):
-    if done(a, "multistep"):
+    if done(a, "multistep2"):
         return
     summ, args, dev, splits, fe, model, ctrls, R = load_run(a, "C")
     items = splits["val"][: a.n_rec]
@@ -245,12 +245,12 @@ def cmd_multistep(a):
                     for nm, s in sc.items():
                         acc[f"{key}|{nm}"].append(_spearman(s, tgt)[v].cpu())
                         acc[f"{key}|{nm}_top"].append(((_topk_mask(s, k25) & _topk_mask(tgt, k25)).sum(-1).float() / k25)[v].cpu())
-                    ratio[key].append((tgt.sum(-1) / u1["util_kl"].sum(-1).clamp_min(1e-12))[v].cpu())
+                    ratio[key].append((tgt.sum(-1) / hs[1].sum(-1).clamp_min(1e-12))[v].cpu())  # vs. the one-step hold harm
     res = dict(n_rec=len(items), stride=a.stride,
                spearman={k: float(torch.cat(v).nanmean()) for k, v in acc.items()},
                harm_ratio_to_onestep={k: float(torch.cat(v).median()) for k, v in ratio.items()},
                n_points=int(sum(len(x) for x in acc[f"k1_H1|onestep"])))
-    json.dump(res, open(out_path(a, "multistep"), "w"), indent=1)
+    json.dump(res, open(out_path(a, "multistep2"), "w"), indent=1)
     log("multistep", json.dumps(res["spearman"])[:600])
 
 
@@ -447,13 +447,20 @@ def tolerant_metrics(refs, ests, durs):
 
 @torch.no_grad()
 def cmd_collars(a):
-    if done(a, "collars"):
+    if done(a, "collars2"):
         return
     summ, args, dev, splits, fe, model, ctrls, R = load_run(a, "C")
+    ck = os.path.join(a.run, "ctrl_e2e.pt")
+    if os.path.exists(ck):
+        gate = Controller(model.dx, model.d).to(dev)
+        gate.load_state_dict(torch.load(ck, map_location=dev)); gate.eval()
+        ctrls = nn.ModuleDict(dict(ctrls.items())); ctrls["e2e"] = gate
     full, _, fprobs = evaluate(model, fe, splits, dev)
     w, mf = full["decoding"]
     res = {}
     configs = [("full", 1.0)] + [(p, 0.25) for p in ("util", "change", "periodic", "random")] + [("util", 0.125), ("util", 0.5)]
+    if "e2e" in ctrls:
+        configs.append(("e2e", 0.25))
     for name, b in configs:
         if name == "full":
             probs, dec = fprobs, (w, mf)
@@ -470,10 +477,11 @@ def cmd_collars(a):
             r[k] = tolerant_metrics(refs, est, durs)
             # tolerant preservation: the full model's own decoded events as reference
             fref = [M.decode(p, w, mf) for p in fprobs[k]]
-            r[k].update({f"pres_{kk}": v for kk, v in tolerant_metrics(fref, est, durs).items()})
+            est_pres = [M.decode(p, w, mf) for p in probs[k]]   # same decoding as F_pres (train.evaluate)
+            r[k].update({f"pres_{kk}": v for kk, v in tolerant_metrics(fref, est_pres, durs).items()})
         res[f"{name}@{b}"] = r
         log(f"[collars] {name}@{b}: " + json.dumps({k: round(v, 3) for k, v in r['test2024'].items()}))
-    json.dump(res, open(out_path(a, "collars"), "w"), indent=1)
+    json.dump(res, open(out_path(a, "collars2"), "w"), indent=1)
 
 
 # ----------------------------------------------------------------------------- R1.2: overhead scaling

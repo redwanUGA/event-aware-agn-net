@@ -94,6 +94,19 @@ python -m eaagn.render --numbers paper/numbers.json --paper paper
 The last three commands regenerate `paper/numbers.json` and all tables from the files in this
 repository alone.
 
+## Revision round 1 (release `v1.1-revision1`)
+
+* `results/agnh_s*`: AGN-Net cell on the harmonic graph; `results_hfl/`: HF_Lung_V1 runs
+  (`agnsel` = AGN-Net cell, `ggrusel` = graph GRU).
+* `results/*/rev_*.json`: revision analyses. `rev_collars2.json` and `rev_multistep2.json` supersede
+  `rev_collars.json` and `rev_multistep.json` (preservation now decoded with the full model's decoding,
+  as for F_pres; multi-step harm normalised by the one-step hold harm); both versions are kept.
+* `rev_e2e.json`, `grid_Ce2e.json`, `rec_Ce2e_*.npz`, `ctrl_e2e.pt`: the end-to-end gate baseline.
+* `logs/hfl_agnsel_s2.nan_*.log`, `logs/hfl_agnsel_s3.nan_h100.log`: the HF_Lung AGN-Net attempts that
+  diverged in stage A (reported in the paper).
+* `slurm/joblists/`: every job list that was run on the cluster (one command per line, cluster paths
+  replaced by `$RUN_ROOT`).
+
 ## Data
 
 * SPRSound (paediatric; Zhang et al., IEEE TBioCAS 2022): <https://github.com/SJTU-YONGFU-RESEARCH-GRP/SPRSound>

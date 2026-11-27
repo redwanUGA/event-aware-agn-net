@@ -66,7 +66,7 @@ def main():
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    plt.rcParams.update({"font.size": 7, "font.family": "serif", "axes.spines.top": False, "axes.spines.right": False,
+    plt.rcParams.update({"font.size": 7.5, "font.family": "serif", "axes.spines.top": False, "axes.spines.right": False,
                          "pdf.fonttype": 42})
     S = mu.shape[1]; T = S * STEP * 0.01
     fig, ax = plt.subplots(4, 1, figsize=(3.5, 4.6), sharex=True, gridspec_kw=dict(height_ratios=[1.3, 1, 1, 1]))
@@ -77,16 +77,16 @@ def main():
         k = CLASSES.index(c) if c in CLASSES else 1
         ax[0].plot([on, off], [124, 124], color=COL[(k - 1) % 8], lw=3, solid_capstyle="butt")
         ax[0].text((on + off) / 2, 113, c.replace("Fine Crackle", "FC").replace("Normal", "N").replace("Wheeze", "W"),
-                   ha="center", va="top", fontsize=5.5, color="#0b0b0b")
-    ax[0].set_ylabel("mel band"); ax[0].set_title("(a) Log-mel (25 ms) and annotated events", fontsize=7)
+                   ha="center", va="top", fontsize=7, color="#0b0b0b")
+    ax[0].set_ylabel("mel band"); ax[0].set_title("(a) Log-mel (25 ms) and annotated events", fontsize=7.5)
     ext = [0, T, 0, 64]
     share = uu / np.maximum(uu.sum(0, keepdims=True), 1e-12)      # each region's share of utility per step
     ax[1].imshow(share, origin="lower", aspect="auto", extent=ext, cmap="Blues", vmin=0, vmax=np.percentile(share, 99))
-    ax[1].set_ylabel("region"); ax[1].set_title("(b) Share of measured skip-harm utility per step (hindsight)", fontsize=7)
+    ax[1].set_ylabel("region"); ax[1].set_title("(b) Share of measured skip-harm utility per step (hindsight)", fontsize=7.5)
     ax[2].imshow(mu, origin="lower", aspect="auto", extent=ext, cmap="Greys", vmin=0, vmax=1.6)
-    ax[2].set_ylabel("node"); ax[2].set_title(f"(c) Updates chosen by skip-harm controller ({a.budget * 100:g}% budget)", fontsize=7)
+    ax[2].set_ylabel("node"); ax[2].set_title(f"(c) Updates chosen by skip-harm controller ({a.budget * 100:g}% budget)", fontsize=7.5)
     ax[3].imshow(mc, origin="lower", aspect="auto", extent=ext, cmap="Greys", vmin=0, vmax=1.6)
-    ax[3].set_ylabel("node"); ax[3].set_title(f"(d) Updates chosen by change controller ({a.budget * 100:g}% budget)", fontsize=7)
+    ax[3].set_ylabel("node"); ax[3].set_title(f"(d) Updates chosen by change controller ({a.budget * 100:g}% budget)", fontsize=7.5)
     ax[3].set_xlabel("time (s)")
     fig.tight_layout(h_pad=0.4)
     fig.savefig(a.out, bbox_inches="tight", dpi=600)

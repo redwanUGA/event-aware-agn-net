@@ -1,0 +1,1 @@
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s1 > $RUN_ROOT/logs/agn_s1.log 2>&1

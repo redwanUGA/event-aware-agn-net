@@ -1,0 +1,6 @@
+cd $RUN_ROOT/code_v3 && python -m eaagn.train --arch agn --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s0 --regrid random,periodic,energy,acoustic,change > $RUN_ROOT/logs/regrid_agn_s0.log 2>&1
+cd $RUN_ROOT/code_v3 && python -m eaagn.train --arch agn --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s1 --regrid random,periodic,energy,acoustic,change > $RUN_ROOT/logs/regrid_agn_s1.log 2>&1
+cd $RUN_ROOT/code_v3 && python -m eaagn.train --arch agn --seed 2 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s2 --regrid random,periodic,energy,acoustic,change > $RUN_ROOT/logs/regrid_agn_s2.log 2>&1
+cd $RUN_ROOT/code_v3 && python -m eaagn.train --arch agn --fresh 0 --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnnf_s0 --regrid random,periodic,energy,acoustic,change > $RUN_ROOT/logs/regrid_agnnf_s0.log 2>&1
+cd $RUN_ROOT/code_v3 && python -m eaagn.train --arch agn --fresh 0 --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnnf_s1 --regrid random,periodic,energy,acoustic,change > $RUN_ROOT/logs/regrid_agnnf_s1.log 2>&1
+cd $RUN_ROOT/code_v3 && python -m eaagn.train --arch agn --fresh 0 --seed 2 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnnf_s2 --regrid random,periodic,energy,acoustic,change > $RUN_ROOT/logs/regrid_agnnf_s2.log 2>&1

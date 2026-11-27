@@ -1,0 +1,9 @@
+cd $RUN_ROOT/code_v4 && python -m eaagn.train --arch agnh --selective 1 --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnh_s0 > $RUN_ROOT/logs/agnh_s0.log 2>&1
+cd $RUN_ROOT/code_v4 && python -m eaagn.train --arch agnh --selective 1 --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnh_s1 > $RUN_ROOT/logs/agnh_s1.log 2>&1
+cd $RUN_ROOT/code_v4 && python -m eaagn.train --arch agnh --selective 1 --seed 2 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnh_s2 > $RUN_ROOT/logs/agnh_s2.log 2>&1
+cd $RUN_ROOT/code_v4 && for c in multistep lipschitz collars longstream; do python -m eaagn.revision $c --run $RUN_ROOT/results/agn_s0 --data $RUN_ROOT/data; done > $RUN_ROOT/logs/rev_agn_s0.log 2>&1
+cd $RUN_ROOT/code_v4 && for c in multistep lipschitz collars longstream; do python -m eaagn.revision $c --run $RUN_ROOT/results/agn_s1 --data $RUN_ROOT/data; done > $RUN_ROOT/logs/rev_agn_s1.log 2>&1
+cd $RUN_ROOT/code_v4 && for c in multistep lipschitz collars longstream; do python -m eaagn.revision $c --run $RUN_ROOT/results/agn_s2 --data $RUN_ROOT/data; done > $RUN_ROOT/logs/rev_agn_s2.log 2>&1
+cd $RUN_ROOT/code_v4 && for c in multistep lipschitz; do python -m eaagn.revision $c --run $RUN_ROOT/results/ggrusel_s0 --data $RUN_ROOT/data; done > $RUN_ROOT/logs/rev_ggrusel_s0.log 2>&1
+cd $RUN_ROOT/code_v4 && for c in multistep lipschitz; do python -m eaagn.revision $c --run $RUN_ROOT/results/ggrusel_s1 --data $RUN_ROOT/data; done > $RUN_ROOT/logs/rev_ggrusel_s1.log 2>&1
+cd $RUN_ROOT/code_v4 && for c in multistep lipschitz; do python -m eaagn.revision $c --run $RUN_ROOT/results/ggrusel_s2 --data $RUN_ROOT/data; done > $RUN_ROOT/logs/rev_ggrusel_s2.log 2>&1

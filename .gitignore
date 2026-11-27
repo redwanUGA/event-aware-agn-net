@@ -1,8 +1,7 @@
 __pycache__/
 *.pyc
-data/
-data_hflung/
-SPRSound/
-HF_Lung_V1/
+/data/
+/data_hflung/
+/SPRSound/
+/HF_Lung_V1/
 *.aux
-*.log.tmp

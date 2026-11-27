@@ -1,0 +1,6 @@
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s0 > $RUN_ROOT/logs/agn_s0.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s1 > $RUN_ROOT/logs/agn_s1.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --seed 2 --data $RUN_ROOT/data --out $RUN_ROOT/results/agn_s2 > $RUN_ROOT/logs/agn_s2.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --fresh 0 --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnnf_s0 > $RUN_ROOT/logs/agnnf_s0.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --fresh 0 --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnnf_s1 > $RUN_ROOT/logs/agnnf_s1.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --fresh 0 --seed 2 --data $RUN_ROOT/data --out $RUN_ROOT/results/agnnf_s2 > $RUN_ROOT/logs/agnnf_s2.log 2>&1

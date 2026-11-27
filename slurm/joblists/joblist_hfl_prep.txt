@@ -1,0 +1,1 @@
+cd $RUN_ROOT/code_v4 && python -m eaagn.prepare_hflung --repo $RUN_ROOT/HF_Lung_V1 --out $RUN_ROOT/data_hflung > $RUN_ROOT/logs/prep_hflung.log 2>&1

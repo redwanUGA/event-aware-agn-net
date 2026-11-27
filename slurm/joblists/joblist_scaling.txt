@@ -1,0 +1,1 @@
+cd $RUN_ROOT/code_v4 && python -m eaagn.revision scaling --out $RUN_ROOT/results/scaling.json > $RUN_ROOT/logs/scaling.log 2>&1

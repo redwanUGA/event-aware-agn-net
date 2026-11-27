@@ -1,0 +1,1 @@
+cd $RUN_ROOT/code_v4 && python -m eaagn.prepare_hflung --repo x --out $RUN_ROOT/data_hflung --manifest_only 1 > $RUN_ROOT/logs/hfl_manifest.log 2>&1

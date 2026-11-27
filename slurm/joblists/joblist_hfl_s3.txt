@@ -1,0 +1,1 @@
+cd $RUN_ROOT/code_v4 && EAAGN_NONADV=2 python -m eaagn.train --arch agn --selective 1 --seed 3 --data $RUN_ROOT/data_hflung --out $RUN_ROOT/results_hfl/agnsel_s3 --epochs_a 15 --epochs_b 3 --epochs_c 3 --epochs_b2 1 > $RUN_ROOT/logs/hfl_agnsel_s3.log 2>&1

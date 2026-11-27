@@ -1,0 +1,15 @@
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch gru --seed 0 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/gru_s0 > $RUN_ROOT/logs/gru_s0_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch tcn --seed 0 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/tcn_s0 > $RUN_ROOT/logs/tcn_s0_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch pool --seed 0 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/pool_s0 > $RUN_ROOT/logs/pool_s0_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch ggru --seed 0 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/ggru_s0 > $RUN_ROOT/logs/ggru_s0_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch gconv --seed 0 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/gconv_s0 > $RUN_ROOT/logs/gconv_s0_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch gru --seed 1 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/gru_s1 > $RUN_ROOT/logs/gru_s1_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch tcn --seed 1 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/tcn_s1 > $RUN_ROOT/logs/tcn_s1_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch pool --seed 1 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/pool_s1 > $RUN_ROOT/logs/pool_s1_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch ggru --seed 1 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/ggru_s1 > $RUN_ROOT/logs/ggru_s1_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch gconv --seed 1 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/gconv_s1 > $RUN_ROOT/logs/gconv_s1_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch gru --seed 2 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/gru_s2 > $RUN_ROOT/logs/gru_s2_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch tcn --seed 2 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/tcn_s2 > $RUN_ROOT/logs/tcn_s2_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch pool --seed 2 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/pool_s2 > $RUN_ROOT/logs/pool_s2_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch ggru --seed 2 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/ggru_s2 > $RUN_ROOT/logs/ggru_s2_reeval.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch gconv --seed 2 --data $RUN_ROOT/data --reeval 1 --out $RUN_ROOT/results/gconv_s2 > $RUN_ROOT/logs/gconv_s2_reeval.log 2>&1

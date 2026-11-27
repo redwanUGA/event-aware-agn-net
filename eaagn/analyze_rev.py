@@ -14,7 +14,7 @@ import numpy as np
 
 from .analyze import BUDGETS, POL_NAME, ev_F, ev_advR, load_runs, mean, ms, paired_boot, rec, seed_sum, seg_advF
 
-TOL_ROWS = [("ev_c0.2", "Event, 0.2\\,s collar (main)"), ("ev_c0.5", "Event, 0.5\\,s collar"), ("ev_c1.0", "Event, 1\\,s collar"),
+TOL_ROWS = [("ev_c0.2", "Event, 0.2\\,s collar"), ("ev_c0.5", "Event, 0.5\\,s collar"), ("ev_c1.0", "Event, 1\\,s collar"),
             ("onset_c0.5", "Onset only, 0.5\\,s"), ("onset_c1.0", "Onset only, 1\\,s"), ("overlap", "Any overlap"),
             ("seg1_F", "Segment 1\\,s, all classes"), ("seg2_F", "Segment 2\\,s, all classes"),
             ("seg1_advF", "Segment 1\\,s, adventitious"), ("seg2_advF", "Segment 2\\,s, adventitious")]
@@ -42,11 +42,11 @@ def main():
     T = os.path.join(a.out, "tables")
 
     # ---------------------------------------------------------------- R1.1 tolerant metrics (AGN, stage C)
-    C = [jl(r["dir"], "collars") for r in runs.get("agn", {}).values()]
+    C = [jl(r["dir"], "collars2") or jl(r["dir"], "collars") for r in runs.get("agn", {}).values()]
     C = [c for c in C if c]
     if C:
-        cols = [("full@1.0", ""), ("util@0.25", ""), ("change@0.25", ""), ("random@0.25", ""),
-                ("util@0.25", "pres_"), ("change@0.25", "pres_"), ("random@0.25", "pres_")]
+        cols = [("full@1.0", ""), ("util@0.25", ""), ("e2e@0.25", ""), ("change@0.25", ""), ("random@0.25", ""),
+                ("util@0.25", "pres_"), ("e2e@0.25", "pres_"), ("change@0.25", "pres_"), ("random@0.25", "pres_")]
         rows = []
         for key, lab in TOL_ROWS:
             cells = [lab]
@@ -73,7 +73,8 @@ def main():
 
     # ---------------------------------------------------------------- R1.6 multi-step harm
     combos = [(1, 1), (1, 5), (1, 25), (5, 5), (5, 25), (25, 25)]
-    MS = {arch: [m for m in (jl(r["dir"], "multistep") for r in runs.get(arch, {}).values()) if m] for arch in ("agn", "ggrusel")}
+    MS = {arch: [m for m in (jl(r["dir"], "multistep2") or jl(r["dir"], "multistep") for r in runs.get(arch, {}).values()) if m]
+          for arch in ("agn", "ggrusel")}
     if MS["agn"]:
         rows = []
         for k, H in combos:
@@ -102,7 +103,9 @@ def main():
                       "readout_ratio_median", "spearman_state_err_vs_kl", "e_median", "accumulated_bound_median",
                       "jac_l2_median", "jac_l2_max", "gamma_max"):
                 N[f"lip_{arch}_{b}_{k}"] = g(k)
-            rows.append(f"{nm} & {float(b) * 100:g}\\% & {g('gamma_median'):.3f} & {g('gamma_p99'):.3f} & "
+            N[f"lip_{arch}_{b}_readout_ratio_p99"] = g("readout_ratio_p99")
+            N[f"lip_{arch}_{b}_gamma_max_max"] = max(m[b]["gamma_max"] for m in LP[arch])
+            rows.append(f"{nm} & {float(b) * 100:g}\\% & {g('gamma_median'):.3f} & {g('gamma_p99'):.3f} & {N[f'lip_{arch}_{b}_gamma_max_max']:.2f} & "
                         f"{100 * g('frac_gamma_lt1'):.1f} & {100 * g('one_step_bound_holds'):.1f} & "
                         f"{g('readout_ratio_median'):.3f} & {f3(g('spearman_state_err_vs_kl'))} \\\\")
     if rows:
@@ -218,6 +221,8 @@ def main():
                     for k_, v_ in (("delta", dl), ("lo", lo), ("hi", hi), ("p", p)):
                         N[f"hfl_bt_{arch}_{b:g}_util_full_F_{k_}"] = v_
         N["hfl_nseeds"] = len(H.get("agnsel", {}))
+    N["repo_link"] = "\\url{https://github.com/redwanUGA/event-aware-agn-net}"
+    N["repo_tag"] = "\\texttt{v1.1-revision1}"
     json.dump(N, open(Np, "w"), indent=1)
     print("analyze_rev: numbers", len(N))
 

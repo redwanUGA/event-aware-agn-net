@@ -56,13 +56,13 @@
 
 \funding{This research received no external funding.}
 
-\institutionalreview{Ethical review and approval were not required for this study because it is a secondary analysis of the publicly available, de-identified SPRSound database~\cite{zhang2022sprsound,sprsound2025repo}; no new data were collected and no participants were contacted.}
+\institutionalreview{Ethical review and approval were not required for this study because it is a secondary analysis of the publicly available, de-identified SPRSound~\cite{zhang2022sprsound,sprsound2025repo} and HF\_Lung\_V1~\cite{hsu2021benchmarking} databases; no new data were collected and no participants were contacted.}
 
 \informedconsent{Not applicable. Only publicly available, de-identified data were analysed, and no participants were contacted.}
 
-\dataavailability{The SPRSound data analysed in this study are publicly available at \url{https://github.com/SJTU-YONGFU-RESEARCH-GRP/SPRSound}~\cite{zhang2022sprsound,sprsound2025repo}. The code, data manifests, patient-disjoint split and per-recording results that support the findings are available from the author on request during peer review and will be deposited in a public repository upon publication.}
+\dataavailability{The SPRSound data analysed in this study are publicly available at \url{https://github.com/SJTU-YONGFU-RESEARCH-GRP/SPRSound}~\cite{zhang2022sprsound,sprsound2025repo}. The HF\_Lung\_V1 data are publicly available at \url{https://gitlab.com/techsupportHF/HF_Lung_V1}~\cite{hsu2021benchmarking}. The complete code, configurations, job lists, training and evaluation logs, per-recording results, trained weights and data-split manifests that support the findings are publicly available at \url{https://github.com/redwanUGA/event-aware-agn-net}.}
 
-\acknowledgments{The author acknowledges the Georgia Advanced Computing Resource Center (GACRC) at the University of Georgia for providing the computing resources used in this study. During the preparation of this study, the author used Claude Opus~5.5 (Anthropic) for the purposes of writing experiment and analysis code, running the experiments, analysing the results and drafting the manuscript text. The author has reviewed and edited the output and takes full responsibility for the content of this publication.}
+\acknowledgments{The author acknowledges the Georgia Advanced Computing Resource Center (GACRC) at the University of Georgia for providing the computing resources used in this study. During the preparation of this study, the author used Claude Opus~5.5 (Anthropic) for the purposes of proposing the detailed experimental protocol, writing experiment and analysis code, running the experiments, drafting Proposition~1 and its proof, drafting the interpretation of the results and drafting the manuscript text (see Section~\ref{sec:genai} and Table~\ref{tab:genai}). The author has reviewed and edited the output and takes full responsibility for the content of this publication.}
 
 \conflictsofinterest{The author declares no conflicts of interest.}
 
@@ -75,6 +75,7 @@ CE & Cross-entropy\\
 CNN & Convolutional neural network\\
 CPU & Central processing unit\\
 DCASE & Detection and Classification of Acoustic Scenes and Events\\
+DSP & Digital signal processor\\
 ELU & Exponential linear unit\\
 GCN & Graph convolutional network\\
 GELU & Gaussian-error linear unit\\
@@ -84,6 +85,7 @@ HS & Harmonic score\\
 KL & Kullback--Leibler (divergence)\\
 LN & Layer normalization\\
 MLP & Multilayer perceptron\\
+NPU & Neural processing unit\\
 RNN & Recurrent neural network\\
 TCN & Temporal convolutional network
 \end{tabular}

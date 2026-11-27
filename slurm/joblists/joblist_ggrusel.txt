@@ -1,0 +1,3 @@
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch ggru --selective 1 --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/results/ggrusel_s0 > $RUN_ROOT/logs/ggrusel_s0.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch ggru --selective 1 --seed 1 --data $RUN_ROOT/data --out $RUN_ROOT/results/ggrusel_s1 > $RUN_ROOT/logs/ggrusel_s1.log 2>&1
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch ggru --selective 1 --seed 2 --data $RUN_ROOT/data --out $RUN_ROOT/results/ggrusel_s2 > $RUN_ROOT/logs/ggrusel_s2.log 2>&1

@@ -1,0 +1,26 @@
+\subsection{Use of Generative AI and Reproducibility}
+\label{sec:genai}
+An AI assistant (Claude Opus~5.5, Anthropic) was used extensively in this study, under the author's direction. Table~\ref{tab:genai} states which stages it performed. The research question and the central idea, training the update controller on the counterfactual consequence of skipping rather than on representation change, were the author's. The assistant proposed the detailed experimental protocol, wrote the code, ran the experiments on the university computing cluster under the author's account (every login required the author's two-factor approval), wrote the analysis scripts, drafted Proposition~\ref{prop:bound} and its proof, drafted the interpretation of the results and drafted the manuscript text. The author set the research direction, made or approved every design and reporting decision, reviewed the code, results and text, and takes full responsibility for the content.
+
+Two measures make the results independent of the AI tool. First, every result value in the paper (all tables and figures and the results quoted in the text) is written into the manuscript from the result files by a script (\texttt{analyze.py}, \texttt{analyze\_rev.py}, \texttt{render.py}), so a table cannot disagree with the logs; only dataset facts and a few rounded summary comparisons are typed in the text. Second, the complete code, configurations, job lists, training logs, per-recording results, trained weights and data splits are public at \url{https://github.com/redwanUGA/event-aware-agn-net} (release \texttt{v1.1-revision1}). Every table and figure can be regenerated from these files with the commands in the repository's README, without any AI tool; retraining needs only the public datasets and one GPU.
+
+\begin{table}[H]
+\caption{Division of work between the author and the AI assistant.\label{tab:genai}}
+\centering
+\footnotesize
+\begin{tabular}{p{0.34\textwidth}p{0.6\textwidth}}
+\toprule
+\textbf{Stage} & \textbf{Who} \\
+\midrule
+Research question, central idea & Author \\
+Experimental design and protocol & Assistant proposed; author reviewed and approved \\
+Code (models, training, metrics, runtimes) & Assistant wrote; author reviewed; released in full \\
+Running experiments on the cluster & Assistant prepared and submitted the jobs; author approved every login \\
+Interpretation of results and conclusions & Assistant drafted; author reviewed and decided \\
+Literature search and citations & Assistant drafted; author reviewed \\
+Statistical analysis, tables, figures & Assistant wrote the scripts; numbers are filled in automatically from logged results \\
+Proposition~\ref{prop:bound} and its proof & Assistant drafted; author reviewed \\
+Manuscript text and responses to reviewers & Assistant drafted; author revised and approved \\
+\bottomrule
+\end{tabular}
+\end{table}

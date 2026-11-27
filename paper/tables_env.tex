@@ -7,7 +7,7 @@
 
 \newcommand{\archtable}{%
 \begin{table}[H]
-\caption{Full-update backbones (every node updated at every step). Mean$\pm$sd over three seeds. Params: parameters in thousands. $F$: event-based F-score (DCASE collars); adv-$F$: event-based F-score on adventitious classes; seg-adv-$F$: 1\,s segment-based F-score on adventitious classes; mF1: frame macro-F1; HS: SPRSound harmonic score for classifying annotated segments. All models share the front end, the always-on encoder, the readout and the training recipe. Scores are for the stage-A weights (full-update training only); the full-update reference rows in Tables~\ref{tab:policy}, \ref{tab:policygg} and~\ref{tab:policynf} use the stage-C fine-tuned weights and therefore differ slightly.\label{tab:arch}}
+\caption{Full-update backbones (every node updated at every step). Mean$\pm$sd over three seeds. Params: parameters in thousands. $F$: event-based F-score (DCASE collars); adv-$F$: event-based F-score on adventitious classes; seg-adv-$F$: 1\,s segment-based F-score on adventitious classes; mF1: frame macro-F1; HS: SPRSound harmonic score for classifying annotated segments. All models share the front end, the always-on encoder, the readout and the training recipe. Scores are for the stage-A weights (full-update training only); the full-update reference rows in Tables~\ref{tab:policy}, \ref{tab:policygg}, \ref{tab:policyh} and~\ref{tab:policynf} use the stage-C fine-tuned weights and therefore differ slightly.\label{tab:arch}}
 \begin{adjustwidth}{-\extralength}{0cm}
 \centering
 \footnotesize
@@ -85,16 +85,16 @@
 % ---------------- revision round 1 tables
 \newcommand{\toltable}{%
 \begin{table}[H]
-\caption{Boundary-tolerant metrics on the 2024 test set (stage-C weights, mean over three seeds). Left: scores against the annotations. Right: preservation, i.e., the same criteria with the full-update model's own events as reference. Collars apply to onsets; offsets use the larger of the collar and 20\% of the event duration.\label{tab:tolerant}}
+\caption{Boundary-tolerant metrics on the 2024 test set (stage-C weights, mean over three seeds). Left: scores against the annotations. Right: preservation, i.e., the same criteria with the full-update model's own events as reference. Collars apply to onsets; offsets use the larger of the collar and 20\% of the event duration. As for $F_{\mathrm{pres}}$ in Table~\ref{tab:policy}, the preservation columns decode the selective outputs with the full model's decoding parameters, so the 0.2\,s row agrees with Table~\ref{tab:policy} to within 0.001. E2E: the end-to-end gate.\label{tab:tolerant}}
 \begin{adjustwidth}{-\extralength}{0cm}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lccccccc}
+\begin{tabular}{lccccccccc}
 \toprule
- & \multicolumn{4}{c}{\textbf{Against annotations}} & \multicolumn{3}{c}{\textbf{Preservation (25\%)}} \\
-\cmidrule(lr){2-5}\cmidrule(lr){6-8}
-\textbf{Criterion} & \textbf{Full} & \textbf{Ours 25\%} & \textbf{Change 25\%} & \textbf{Random 25\%} & \textbf{Ours} & \textbf{Change} & \textbf{Random} \\
+ & \multicolumn{5}{c}{\textbf{Against annotations (25\%)}} & \multicolumn{4}{c}{\textbf{Preservation (25\%)}} \\
+\cmidrule(lr){2-6}\cmidrule(lr){7-10}
+\textbf{Criterion} & \textbf{Full} & \textbf{Ours} & \textbf{E2E} & \textbf{Change} & \textbf{Random} & \textbf{Ours} & \textbf{E2E} & \textbf{Change} & \textbf{Random} \\
 \midrule
 \tabinput{tables/tolerant.tex}
 \bottomrule
@@ -104,7 +104,7 @@
 
 \newcommand{\multisteptable}{%
 \begin{table}[H]
-\caption{Is the one-step target enough? Spearman correlation, across the 64 regions at a step, between a scorer and the measured multi-step harm: region $\B_i$ is held for $k$ steps and the frame KL divergence to the full-update output is summed over $H$ steps (40\,ms each). ``One-step'': the label-free one-step utility; ``Ctrl'': the trained skip-harm controller; ``Change'': the change head. Last column: median ratio of the multi-step harm to the one-step harm (AGN-Net cell). Mean over three seeds; validation recordings, stage-C weights.\label{tab:multistep}}
+\caption{Is the one-step target enough? Spearman correlation, across the 64 regions at a step, between a scorer and the measured multi-step harm: region $\B_i$ is held for $k$ steps and the frame KL divergence to the full-update output is summed over $H$ steps (40\,ms each). ``One-step'': the label-free one-step utility; ``Ctrl'': the trained skip-harm controller; ``Change'': the change head. Last column: median ratio of the multi-step harm to the harm of holding the region for a single step ($k{=}H{=}1$; AGN-Net cell). Mean over three seeds; validation recordings, stage-C weights.\label{tab:multistep}}
 \begin{adjustwidth}{-\extralength}{0cm}
 \centering
 \footnotesize
@@ -123,13 +123,13 @@ $\boldsymbol{k}$ & $\boldsymbol{H}$ & \textbf{One-step} & \textbf{Ctrl} & \textb
 
 \newcommand{\liptable}{%
 \begin{table}[H]
-\caption{Proposition~\ref{prop:bound} on real trajectories (skip-harm controller, validation recordings, stage-C weights, mean over three seeds). $\gamma_t$: secant ratio of the full-update transition between the full and selective states; ``Bound'': share of steps where the one-step inequality holds; ``Readout'': median ratio $\|\ell^{\mathrm{full}}_t-\ell^{\mathrm{sel}}_t\|_\infty/e_t$ between frame logits and state error; $\rho(e,\mathrm{KL})$: Spearman correlation between the state error and the frame KL divergence across steps.\label{tab:lipschitz}}
+\caption{Proposition~\ref{prop:bound} on real trajectories (skip-harm controller, validation recordings, stage-C weights, mean over three seeds). $\gamma_t$: secant ratio of the full-update transition between the full and selective states (``p99'': 99th percentile over steps; ``Max'': largest ratio over all steps and seeds, the only column not averaged over seeds); ``Bound'': share of steps where the one-step inequality holds (by construction, since it uses the measured $\gamma_t$); ``Readout'': median ratio $\|\ell^{\mathrm{full}}_t-\ell^{\mathrm{sel}}_t\|_\infty/e_t$ between frame logits and state error; $\rho(e,\mathrm{KL})$: Spearman correlation between the state error and the frame KL divergence across steps. For the graph GRU, selected nodes read all neighbours, so its boundary defect is zero.\label{tab:lipschitz}}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{llcccccc}
+\begin{tabular}{llccccccc}
 \toprule
-\textbf{Cell} & \textbf{Budget} & \textbf{Median} $\boldsymbol{\gamma_t}$ & \textbf{p99} $\boldsymbol{\gamma_t}$ & $\boldsymbol{\gamma_t<1}$ \textbf{(\%)} & \textbf{Bound (\%)} & \textbf{Readout} & $\boldsymbol{\rho(e,\mathrm{KL})}$ \\
+\textbf{Cell} & \textbf{Budget} & \textbf{Median} $\boldsymbol{\gamma_t}$ & \textbf{p99} $\boldsymbol{\gamma_t}$ & \textbf{Max} $\boldsymbol{\gamma_t}$ & $\boldsymbol{\gamma_t<1}$ \textbf{(\%)} & \textbf{Bound (\%)} & \textbf{Readout} & $\boldsymbol{\rho(e,\mathrm{KL})}$ \\
 \midrule
 \tabinput{tables/lipschitz.tex}
 \bottomrule

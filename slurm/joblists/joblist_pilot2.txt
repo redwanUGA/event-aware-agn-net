@@ -1,0 +1,1 @@
+cd $RUN_ROOT/code_v2 && python -m eaagn.train --arch agn --selective 1 --seed 0 --data $RUN_ROOT/data --out $RUN_ROOT/pilot2/agn --limit 320 --epochs_a 2 --epochs_b 1 --epochs_c 1 --epochs_b2 1 --quick 1 > $RUN_ROOT/logs/pilot2_agn.log 2>&1 && python -m eaagn.bench --run $RUN_ROOT/pilot2/agn --data $RUN_ROOT/data --n_rec 3 --threads 1 >> $RUN_ROOT/logs/pilot2_agn.log 2>&1
